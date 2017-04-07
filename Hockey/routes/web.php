@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//nice meme
 
 
-
+Route::get('/hockey', function () {
+    return view('welcome');
+});
