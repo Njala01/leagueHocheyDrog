@@ -15,6 +15,10 @@ class CreatePartiesTable extends Migration
     {
         Schema::create('parties', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_saison');
+            $table->string('titre');
+            $table->string('lieu');
+            $table->dateTime('date');
             $table->timestamps();
         });
     }
