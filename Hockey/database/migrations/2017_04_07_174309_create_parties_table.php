@@ -15,10 +15,16 @@ class CreatePartiesTable extends Migration
     {
         Schema::create('parties', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('local_team');
+            $table->integer('visitor_team');
             $table->integer('id_saison');
             $table->string('titre');
             $table->string('lieu');
             $table->dateTime('date');
+            $table->integer('winning_team');
+            $table->integer('losing_team');
+            $table->integer('final_score_local');
+            $table->integer('final_score_visitor');
             $table->timestamps();
         });
     }

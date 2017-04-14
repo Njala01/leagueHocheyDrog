@@ -15,6 +15,11 @@ class CreateStatsTable extends Migration
     {
         Schema::create('stats', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->integer('match_id');
+            $table->integer('player_id');
+            $table->integer('winning_team');
+            $table->datetime('time');
             $table->timestamps();
         });
     }
