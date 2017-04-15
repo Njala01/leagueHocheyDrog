@@ -1,5 +1,5 @@
 <?php
-
+use App\Partie;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,18 @@
 
 // Index du site, montre les informations des parties à venir
 Route::get('/', 'PartieController@index')->name('index');
+//Route::resource('parties/edit', 'PartieController');
+
+// Lister les parties et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
+// Restreint aux rôles : admin
+Route::get('/parties/edit', ['as' => 'parties.edit', 'uses' => 'PartieController@edit']);
+
+Route::post('/parties/edit', ['as' => 'parties.create', 'uses' => 'PartieController@create']);
+
+Route::put('/parties/edit/{partie}', ['as' => 'parties.update', 'uses' => 'PartieController@update']);
+
+Route::delete('/parties/edit/{partie}', ['as' => 'parties.destroy', 'uses' => 'PartieController@destroy']);
+
 /**********************************************************/
 
 
@@ -36,10 +48,3 @@ Route::get('/saisons', 'SaisonController@index');
 // Lister les saisons et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
 // Restreint aux rôles : admin
 Route::get('/saisons/edit', 'SaisonController@edit');
-
-// Lister les parties
-Route::get('/parties', 'PartieController@index');
-
-// Lister les parties et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
-// Restreint aux rôles : admin
-Route::get('/parties/edit', 'PartieController@edit');

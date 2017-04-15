@@ -18,7 +18,7 @@ class CreatePartiesTable extends Migration
             $table->integer('id_saison');
             $table->string('titre');
             $table->string('lieu');
-            $table->dateTime('date');
+            $table->string('date');
             $table->timestamps();
         });
     }

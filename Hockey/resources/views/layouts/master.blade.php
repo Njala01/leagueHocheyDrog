@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="_token" content="{{ csrf_token() }}">
+    
+    <link rel="icon" href="../../NHL_LOGO.png">
 
     <title>NHL.com</title>
 
@@ -20,22 +23,28 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
 
-  <body style="background-color: #ffff99">
+  <body style="background-color: #ececec">
 
   @include('layouts.nav')
 
 
-    <div class="container" style="min-height:800px;background-color: #eeeeee">
+    <div class="container" style="min-height:800px;">
 
       <div class="row">
-      
-         @yield('content')
 
+      <div class="col-xs-8">
+         @yield('content')
+      </div>
+      <div class="col-xs-4">
+         @include('layouts.sidebar')
+      </div>
       </div><!-- /.row -->
 
     </div><!-- /.container -->
 
     @include('layouts.footer')
+
+    @yield('scripts')
 
   </body>
 </html>
