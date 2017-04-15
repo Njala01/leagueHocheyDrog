@@ -15,6 +15,9 @@ class CreateEquipesTable extends Migration
     {
         Schema::create('equipes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->integer('admin_id');
+            $table->integer('ligue_id');
             $table->timestamps();
         });
     }
