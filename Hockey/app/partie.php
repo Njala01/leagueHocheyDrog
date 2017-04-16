@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class partie extends Model
 {
     //
-	public $timestamps = false;
+	//public $timestamps = false;
 
     public function saison(){
     	return $this->belongsTo(Saison::class);
