@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Validator;
 use Illuminate\Http\Request;
 use App\Partie;
+use Carbon;
 
 class PartieController extends Controller
 {
     public function index()
     {
-    	$parties = Partie::all();
+    	$parties = Partie::where('date', '>', Carbon\Carbon::today())->orderBy('date', 'asc')->get();
     	return view('parties.index', compact('parties'));
     }
 
@@ -22,7 +23,7 @@ class PartieController extends Controller
 
         public function show()
     {
-    	
+
     }
 
         public function update(Request $request, $id)

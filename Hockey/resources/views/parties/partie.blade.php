@@ -5,8 +5,9 @@
             </a>
             </h2>
             <p class="blog-post-meta"> 
-            	{{ $partie->lieu}} à
-            	{{ $partie->date->toFormattedDateString()}} 
+            <span>Le match aura lieu à </span>
+            	{{ $partie->lieu}} le
+            	{{ Carbon\Carbon::parse($partie->date)->toFormattedDateString()}}
             </p>
 
             {{ $partie->body }}

@@ -74,13 +74,12 @@ $(document).ready(function() {
 				{
 					tr.addClass('danger');
 
-					var errorString;
+					var errorString = "";
 
-					$.each(data, function() {
-						$.each(this, function(key, value) {
-							errorString += '\n' + key + ': ' + value;
+						$.each(data[0], function(key, value) {
+							if(key != undefined)
+							errorString += key + ': ' + value + '\n';
 						});
-					});
 					
 					alert(errorString);
 
@@ -127,11 +126,15 @@ $(document).ready(function() {
 				{
 					tr.addClass('danger');
 
-					$.each(data, function() {
-						$.each(this, function(key, value) {
-							alert(key + ': ' + value);
+					var errorString = "";
+
+						$.each(data[0], function(key, value) {
+							if(key != undefined)
+							errorString += key + ': ' + value + '\n';
 						});
-					});
+					
+					alert(errorString);
+
 				} else 
 				{
 					tr.removeClass('danger');
@@ -142,7 +145,6 @@ $(document).ready(function() {
 
 	$('body').on('click', '.EffacerPartie', function(){
 
-		//cacher car on ne peut pas enlever
 		$(this).closest('tr').remove();
 
 		$.ajax({
@@ -155,4 +157,4 @@ $(document).ready(function() {
 	});
 });
 </script>
-          @endsection
+@endsection
