@@ -6,11 +6,11 @@
   <h4>Les parties</h4>
   <ol class="list-unstyled">
 
-  @foreach($parties as $partie)
+  {{-- @foreach($parties as $partie)
     <li>
       <a href="/?month={{$partie['month']}}&year={{$partie['year']}}"> {{ $partie['month'] . ' ' . $partie['year'] }} </a>
     </li>
-  @endforeach
+  @endforeach --}}
 
   </ol>
 </div>

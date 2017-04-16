@@ -11,6 +11,13 @@ use App\Partie;
 |
 */
 
+/*****    DINGO API    ******/
+//Pour voir les datas des équipes brut:
+//http://hockey.app:8000/api/equipes
+
+Route::get('equipes', 'EquipeController@list');
+
+/*************************************************************/
 // Index du site, montre les informations des parties à venir
 Route::get('/', 'PartieController@index')->name('index');
 
@@ -24,7 +31,7 @@ Route::delete('/parties/edit/{partie}', ['as' => 'parties.destroy', 'uses' => 'P
 
 
 // Lister les équipes
-Route::get('/equipes', 'EquipeController@index');
+//Route::get('/equipes', 'EquipeController@index');
 
 // Lister les équipes et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
 // Restreint aux rôles : admin
