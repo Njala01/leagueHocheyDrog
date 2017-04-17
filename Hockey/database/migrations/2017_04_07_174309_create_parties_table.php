@@ -18,13 +18,13 @@ class CreatePartiesTable extends Migration
             $table->integer('local_team');
             $table->integer('visitor_team');
             $table->integer('id_saison');
-            $table->string('titre');
-            $table->string('lieu');
-            $table->dateTime('date');
-            $table->integer('winning_team');
-            $table->integer('losing_team');
-            $table->integer('final_score_local');
-            $table->integer('final_score_visitor');
+            $table->string('titre', 50);
+            $table->string('lieu', 50);
+            $table->datetime('date');
+            $table->integer('winning_team')->nullable();
+            $table->integer('losing_team')->nullable();
+            $table->integer('final_score_local')->nullable();
+            $table->integer('final_score_visitor')->nullable();
             $table->timestamps();
         });
     }

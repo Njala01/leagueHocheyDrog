@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Dingo\Api\Routing\Router;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,10 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+$api = app(Router::class);
+
+$api->version('v1', [], function (Router $api) {
+    $api->get('equipes', 'App\Http\Controllers\Api\V1\EquipeController@index');
 });

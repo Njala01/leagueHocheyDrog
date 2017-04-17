@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Equipe;
+use Dingo\Api\Routing\Helpers;
+use Illuminate\View\View;
 
 class EquipeController extends Controller
 {
-    public function index()
+
+use Helpers;
+
+    public function list() : View
     {
-    	$equipes = Equipe::latest()->get();
-    	return view('equipes.index', compact('equipes'));
+        $equipes = $this->api->get('/equipes/');
+        //pour debug
+        //echo $equipes;
+        return view('equipes.index', compact('equipes'));
     }
 }

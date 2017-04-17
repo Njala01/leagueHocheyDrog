@@ -11,6 +11,7 @@ class CreateStatsJoueursTable extends Migration
      *
      * @return void
      */
+    
     public function up()
     {
         Schema::create('stats_joueurs', function (Blueprint $table) {
