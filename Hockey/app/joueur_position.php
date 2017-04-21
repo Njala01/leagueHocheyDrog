@@ -8,7 +8,7 @@ class joueur_position extends Model
 {
     //
 
-    public function joueur(){
+    /*public function joueur(){
     	return $this->belongsToMany(Joueur::class);
-    }
+    }*/
 }

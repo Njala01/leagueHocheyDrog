@@ -8,11 +8,11 @@ class ligue extends Model
 {
     //
 
-    public function joueur(){
-    	return $this->hasMany(Joueur::class);
+    public function equipe(){
+    	return $this->hasMany(Equipe::class);
     }
 
     public function saison(){
-    	return $this->belongsToMany(Saison::class);
+    	return $this->hasMany(Saison::class);
     }
 }
