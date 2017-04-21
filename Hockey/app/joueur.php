@@ -12,7 +12,15 @@ class joueur extends Model
     	return $this->belongsToMany(Equipe::class);
     }
 
-    public function joueur_position(){
-    	return $this->hasMany(Joueur::class);
+    /*public function joueur_position(){
+    	return $this->hasMany(Joueur_position::class);
+    }*/
+
+    public function user(){
+    	return $this->hasOne(User::class);
+    }
+
+    public function stats(){
+    	return $this->belongsToMany(Stats::class);
     }
 }

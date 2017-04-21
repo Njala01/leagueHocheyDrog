@@ -9,7 +9,7 @@ class equipe extends Model
     //
 
     public function ligue(){
-    	return $this->belongsToMany(Ligue::class);
+    	return $this->belongsTo(Ligue::class);
     }
 
     public function joueur(){
