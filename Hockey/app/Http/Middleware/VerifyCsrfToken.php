@@ -16,6 +16,7 @@ class VerifyCsrfToken extends BaseVerifier
         //
     ];
 
+    //Vide pour l'instant, mais on peut filtrer les  requêtes pour faire ce qu'on veut
     public function handle($request, Closure $next)
     {
         return $next($request);

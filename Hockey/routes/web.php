@@ -17,6 +17,8 @@ use App\Partie;
 
 Route::get('equipes', 'EquipeController@list');
 
+Route::get('parties', 'PartieController@index');
+
 /*************************************************************/
 // Index du site, montre les informations des parties à venir
 Route::get('/', 'PartieController@index')->name('index');
@@ -62,3 +64,7 @@ Route::post('/saisons/edit', ['as' => 'saisons.create', 'uses' => 'SaisonControl
 Route::put('/saisons/edit/{saison}', ['as' => 'saisons.update', 'uses' => 'SaisonController@update']);
 Route::delete('/saisons/edit/{saison}', ['as' => 'saisons.destroy', 'uses' => 'SaisonController@destroy']);
 /**********************************************************/
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

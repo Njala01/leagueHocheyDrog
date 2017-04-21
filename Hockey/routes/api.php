@@ -21,5 +21,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 $api = app(Router::class);
 
 $api->version('v1', [], function (Router $api) {
-    $api->get('equipes', 'App\Http\Controllers\Api\V1\EquipeController@index');
+	//ÉQUIPES
+    $api->get('/equipes', 'App\Http\Controllers\Api\V1\EquipeController@index');
+
+    //PARTIES
+    $api->get('/parties', 'App\Http\Controllers\Api\V1\PartieController@index');
+    $api->get('/parties/edit', 'App\Http\Controllers\Api\V1\PartieController@edit');
+    $api->get('/parties/edit/{partie}', 'App\Http\Controllers\Api\V1\PartieController@show');
+
+
+    //$api->get('joueurs', 'App\Http\Controllers\Api\V1\JoueurController@index');
 });

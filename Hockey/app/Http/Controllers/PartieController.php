@@ -4,20 +4,26 @@ namespace App\Http\Controllers;
 
 use Validator;
 use Illuminate\Http\Request;
+use Dingo\Api\Routing\Helpers;
+use Illuminate\View\View;
 use App\Partie;
 use Carbon;
 
 class PartieController extends Controller
 {
+	use Helpers;
+
     public function index()
     {
-    	$parties = Partie::where('date', '>', Carbon\Carbon::today())->orderBy('date', 'asc')->get();
-    	return view('parties.index', compact('parties'));
+        $parties = $this->api->get('/parties/');
+        //pour debug
+        //echo $parties;
+        return view('parties.index', compact('parties'));
     }
 
         public function edit()
     {
-    	$parties = Partie::all();
+    	$parties = $this->api->get('/parties/edit');
     	return view('parties.edit', compact('parties'));
     }
 
@@ -43,6 +49,10 @@ class PartieController extends Controller
 
 	    $partie = Partie::find($id);
 
+	    //$partie = $this->api->get('/parties/edit/{partie}');
+
+		$partie->local_team = $request->local_team;
+	    $partie->visitor_team = $request->visitor_team;
 	    $partie->id_saison = $request->id_saison;
 	    $partie->titre = $request->titre;
 	    $partie->lieu = $request->lieu;
@@ -50,7 +60,7 @@ class PartieController extends Controller
 
 	    $partie->save();
 
-	    return response()->json(['p'=>$partie ],200);
+	    return response()->json(['p'=>$partie, $request->id ],200);
     }
 
         public function create(Request $request)

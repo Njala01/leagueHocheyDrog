@@ -15,17 +15,33 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#">Les Parties</a></li>
-        <li><a href="#">Les Saisons</a></li>
+
+      @if(Auth::check() && Auth::user()->hasAdminRole())
+        <li><a href="/parties/edit">Modifier les Parties</a></li>
+        <li><a href="/saisons">Modifier les Saisons</a></li>
+        @else
+        <li><a href="/parties">Les Parties</a></li>
+        <li><a href="/saisons">Les Saisons</a></li>
+        @endif
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">NHL <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Voir les Équipes</a></li>
-            <li><a href="#">Voir les joueurs</a></li>
-            <li><a href="#">Voir les ligues</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Statistiques des parties</a></li>
-            <li><a href="#">Statistiques des joueurs</a></li>
+
+    @if(Auth::check() && Auth::user()->hasAdminRole())
+          <li><a href="/equipes/edit">Modifier les Équipes</a></li>
+          <li><a href="/joueurs/edit">Voir les joueurs</a></li>
+          <li><a href="/ligues/edit">Voir les ligues</a></li>
+          @else
+          <li><a href="/equipes">Voir les Équipes</a></li>
+          <li><a href="/joueurs">Voir les joueurs</a></li>
+          <li><a href="/ligues">Voir les ligues</a></li>
+    @endif
+
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Statistiques des parties</a></li>
+          <li><a href="#">Statistiques des joueurs</a></li>
+
           </ul>
         </li>
       </ul>
@@ -40,9 +56,9 @@
 
         @if(Auth::check())
 
-          @if(Auth::user()->hasEditorRole())
+          @if(Auth::user()->hasAdminRole() || Auth::user()->hasTeam_AdminRole())
             <li>
-              <a href="/posts/create">Publier</a>
+              <a href="/posts/create">Ajouter une équipe</a>
             </li>
           @endif
 
@@ -50,7 +66,7 @@
 
         <li class="dropdown">
 
-          @if(Auth::check() == false)
+          @if(!Auth::check())
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Se connecter <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/register">Créer un compte</a></li>
@@ -69,12 +85,8 @@
             <ul class="dropdown-menu">
               <li><a href="#">Mon compte</a></li>
 
-              @if(Auth::user()->hasAdminRole())
+              @if(Auth::user()->hasTeam_AdminRole())
                 <li><a href="/editer">Gérer les articles</a></li>
-              @endif
-
-              @if(Auth::user()->hasEditorRole())
-                <li><a href="/editer/{{Auth::user()->id}}">Mes articles</a></li>
               @endif
 
               <li role="separator" class="divider"></li>

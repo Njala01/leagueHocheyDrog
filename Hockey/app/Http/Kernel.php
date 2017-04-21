@@ -18,6 +18,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+
+        //Pour vérifier le CSRF TOKEN
         'App\Http\Middleware\VerifyCsrfToken',
     ];
 
@@ -57,5 +59,10 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+
+        // nouveau middleware pour les accès selon les rôles
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'team_admin' => \App\Http\Middleware\Team_AdminMiddleware::class,
+        'equipe_edit' => \App\Http\Middleware\EquipeEditPermissionMiddleware::class,
     ];
 }
