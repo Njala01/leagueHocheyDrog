@@ -22,7 +22,7 @@ class CreateJoueursTable extends Migration
         Schema::create('equipe_joueur', function (Blueprint $table) {
             $table->integer('joueur_id');
             $table->integer('equipe_id');
-            $table->primary(['joueur_id', 'equipe_id');
+            $table->primary(['joueur_id', 'equipe_id'];
         });
     }
 
