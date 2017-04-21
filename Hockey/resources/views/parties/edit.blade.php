@@ -87,7 +87,7 @@ $(document).ready(function() {
 				{
 					tr.removeClass('danger');
 
-				$('table tr:last').prev().after('<tr id="' + data.p.id + '"><td><input class="form-control local_team" name="local_team" value="' + data.p.local_team + '"></td><td><input class="form-control visitor_team" name="visitor_team" value="' + data.p.visitor_team + '"></td> <td><input class="form-control id_saison" name="id_saison" value="' + data.p.id_saison + '"></td><td><input class="form-control" id="titre" name="titre" value="' + data.p.titre + '"></td><td><input class="form-control" id="lieu" name="lieu" value="' + data.p.lieu + '"></td><td><input class="form-control" id="date" name="date" value="' + data.p.date + '"></td><td><button class="btn btn-danger EffacerPartie"><span class="glyphicon glyphicon-trash"></span></button></td></tr>').fadeIn(500);				
+				$('table tr:last').prev().after('<tr id="' + data.p.id + '"><td><input class="form-control local_team" name="local_team" value="' + data.p.local_team + '"></td><td><input class="form-control visitor_team" name="visitor_team" value="' + data.p.visitor_team + '"></td> <td><input class="form-control id_saison" name="id_saison" value="' + data.p.id_saison + '"></td><td><input class="form-control titre" name="titre" value="' + data.p.titre + '"></td><td><input class="form-control lieu" name="lieu" value="' + data.p.lieu + '"></td><td><input class="form-control date" name="date" value="' + data.p.date + '"></td><td><button class="btn btn-danger EffacerPartie"><span class="glyphicon glyphicon-trash"></span></button></td></tr>').fadeIn(500);				
 
 				$('table tr:last').find('.NEWlocal_team').val('');
 				$('table tr:last').find('.NEWvisitor_team').val('');
