@@ -13,23 +13,18 @@ class PartieController extends Controller
 {
 	use Helpers;
 
-    public function index()
+    public function index() : View
     {
-        $parties = $this->api->get('/parties/');
+        $parties = $this->api->get('/raw/parties/');
         //pour debug
         //echo $parties;
         return view('parties.index', compact('parties'));
     }
 
-        public function edit()
+        public function edit() : View
     {
-    	$parties = $this->api->get('/parties/edit');
+    	$parties = $this->api->get('/raw/parties/');
     	return view('parties.edit', compact('parties'));
-    }
-
-        public function show()
-    {
-
     }
 
         public function update(Request $request, $id)
@@ -48,8 +43,6 @@ class PartieController extends Controller
     	}
 
 	    $partie = Partie::find($id);
-
-	    //$partie = $this->api->get('/parties/edit/{partie}');
 
 		$partie->local_team = $request->local_team;
 	    $partie->visitor_team = $request->visitor_team;

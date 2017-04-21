@@ -14,7 +14,7 @@ class PartieController extends Controller
 {
 	use Helpers;
 
-    public function index(Request $request) : Response
+    public function index() : Response
     {
     	return $this->response->collection(Partie::where('date', '>', Carbon\Carbon::today())->orderBy('date', 'asc')->get(), new PartieTransformer);
     }

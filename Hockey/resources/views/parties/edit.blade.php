@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h3>Les parties<h3>
+<h3>Les parties</h3>
 
 <table class="table table-striped table-bordered">
 	<tr>
@@ -104,7 +104,6 @@ $(document).ready(function() {
 	});
 
 	$('body').on('blur', '.local_team,.visitor_team,.saison_id,.titre,.lieu,.date', function(){
-
 		var tr = $(this).closest('tr');
 		$.ajax({
 			type: "PUT",

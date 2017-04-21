@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <img style="width:15%; min-width: 15%; max-width: 15%"  src="../NHL_LOGO.png" align="left"></img>
+      <img style="width:15%; min-width: 15%; max-width: 15%"  src="../../NHL_LOGO.png" align="left"></img>
       <a class="navbar-brand" style="font:bold; font-size:3.5em; color:black; margin-left:-30px;" href="/">NHL</a>
     </div>
 

@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <!-- Icon -->
-    <link rel="icon" href="../../NHL_LOGO.png">
+    <link rel="icon" href="../../../public/NHL_LOGO.png">
 
     <title>NHL.com</title>
 
