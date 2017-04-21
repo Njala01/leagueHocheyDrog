@@ -20,7 +20,7 @@ class joueur extends Model
     	return $this->hasOne(User::class);
     }
 
-    public function stats(){
-    	return $this->belongsToMany(Stats::class);
+    public function stats_joueur(){
+    	return $this->hasMany(Stats_joueur::class);
     }
 }

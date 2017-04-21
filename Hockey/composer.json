@@ -12,7 +12,8 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "nesbot/carbon": "^1.22",
-        "php-curl-class/php-curl-class": "dev-master"
+        "php-curl-class/php-curl-class": "dev-master",
+        "rymanalu/factory-generator": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

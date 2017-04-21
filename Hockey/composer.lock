@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "929690740fbe854cd853a206afef7307",
+    "content-hash": "7eccde0ba564003c686b1f33b7768894",
     "packages": [
         {
             "name": "dingo/api",
@@ -1780,6 +1780,52 @@
                 "uuid"
             ],
             "time": "2017-03-26T21:03:42+00:00"
+        },
+        {
+            "name": "rymanalu/factory-generator",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rymanalu/factory-generator.git",
+                "reference": "7eafb4f6662c53e3408e657677052b82a102067f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rymanalu/factory-generator/zipball/7eafb4f6662c53e3408e657677052b82a102067f",
+                "reference": "7eafb4f6662c53e3408e657677052b82a102067f",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^5.1",
+                "illuminate/support": "^5.1",
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Rymanalu\\FactoryGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roni Yusuf Manalu",
+                    "email": "rymanalu@gmail.com"
+                }
+            ],
+            "description": "Laravel 5 Model Factory Generator.",
+            "homepage": "https://github.com/rymanalu/factory-generator",
+            "keywords": [
+                "factory",
+                "generator",
+                "laravel",
+                "model",
+                "model factory"
+            ],
+            "time": "2017-03-31 15:29:35"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -4016,7 +4062,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "dingo/api": 20,
-        "php-curl-class/php-curl-class": 20
+        "php-curl-class/php-curl-class": 20,
+        "rymanalu/factory-generator": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
