@@ -36,7 +36,7 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsToMany(Role::class);
     }
-}
+
 
     public function equipes()
     {
@@ -48,7 +48,7 @@ class User extends Authenticatable
         $this->equipes()->save($equipe);
     }
 
-        public function roles()
+    public function roles()
     {
         return $this->belongsToMany(Role::class);
     }
@@ -71,3 +71,4 @@ class User extends Authenticatable
         return $this->roles()->pluck('name')->contains("Registered");
 
     }
+}

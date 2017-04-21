@@ -16,6 +16,10 @@ class CreateStatsJoueursTable extends Migration
     {
         Schema::create('stats_joueurs', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('partieJouer');
+            $table->integer('but');
+            $table->integer('assist');
+            $table->integer('points');
             $table->timestamps();
         });
     }
