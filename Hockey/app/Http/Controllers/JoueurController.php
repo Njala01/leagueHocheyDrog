@@ -16,6 +16,7 @@ class JoueurController extends Controller
     public function index() : View
     {
         $joueurs = $this->api->get('/raw/joueurs/');
+        $joueurs = Joueur::All();
         return view('joueurs.index', compact('joueurs'));
     }
 
@@ -30,7 +31,7 @@ class JoueurController extends Controller
     public function edit($id) : View
     {
         $equipe = Equipe::find($id);
-        $joueurs = $equipe->joueur();
+        $joueurs = $equipe->joueur()->get();
     	return view('joueurs.edit', compact(['joueurs', 'id']));
     }
 
@@ -93,7 +94,7 @@ class JoueurController extends Controller
 		return response()->json(['success'=>true], 200);
     }
 }
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 
 =======
->>>>>>> 4e906b814ca625bc96eecba8ae14a38f0c010bfc
+>>>>>>> 4e906b814ca625bc96eecba8ae14a38f0c010bfc*/

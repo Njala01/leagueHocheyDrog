@@ -4,7 +4,7 @@
 
 <h3>Les équipes {{ $id }}</h3>
 
-<table class="table table-striped table-bordered">
+<table class="table table-striped table-bordered">378-7144
 	<tr>
 		<th>Nom</th>
 		<th>Position</th>
@@ -15,7 +15,7 @@
 	<tr id="{{$joueur->id}}">
 		<td><input class="form-control Nom" name="Nom" value="{{$joueur->name}}"></td> 
 		<td><input class="form-control Position" name="Position" value="{{$joueur->position}}"></td>
-		<td><input class="form-control Equipe" name="Equipe" value="{{$joueur->equipe->name}}"></td>
+		<td><input class="form-control Equipe" name="Equipe" value="{{$joueur->equipe->first()->name}}"></td>
 		<td><button class="btn btn-danger EffacerJoueur"><span class="glyphicon glyphicon-trash"></span></button></td>
 	</tr>
 	@endforeach
