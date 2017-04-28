@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
     {
         //
           $type = [
-        ['nom' => 'admin'],
+        ['name' => 'admin'],
         ];
         foreach($type as $type){
             App\Role::create($type);

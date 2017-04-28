@@ -15,6 +15,7 @@ Route::get('/', ['as' => 'equipes.index', 'uses' => 'EquipeController@index'])->
 Route::get('/equipes', ['as' => 'equipes.index', 'uses' => 'EquipeController@index']);
 Route::get('/equipes/edit', ['as' => 'equipes.edit', 'uses' => 'EquipeController@edit']);
 
+Route::get('/joueurs', ['as' => 'joueurs.index', 'uses' => 'JoueurController@index']);
 Route::get('/joueurs/edit', ['as' => 'joueurs.editAll', 'uses' => 'JoueurController@editAll']);
 Route::get('/equipes/{id}/joueurs', ['as' => 'joueurs.index', 'uses' => 'JoueurController@index']);
 Route::get('/equipes/{id}/joueurs/edit', ['as' => 'joueurs.edit', 'uses' => 'JoueurController@edit']);

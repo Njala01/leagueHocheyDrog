@@ -30,4 +30,9 @@ class equipe extends Model
     		->toArray();
 	}
 
+    public function getPoint($id){
+        $win = Partie::where('winning_team', $id)->count();
+        return $win * 2;
+    }
+
 }
