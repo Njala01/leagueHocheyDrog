@@ -10,6 +10,8 @@ use App\Partie;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', ['as' => 'equipes.index', 'uses' => 'EquipeController@index'])->name('home');
+
 Route::get('/equipes', ['as' => 'equipes.index', 'uses' => 'EquipeController@index']);
 Route::get('/equipes/edit', ['as' => 'equipes.edit', 'uses' => 'EquipeController@edit']);
 
