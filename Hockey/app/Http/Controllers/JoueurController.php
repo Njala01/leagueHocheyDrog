@@ -15,8 +15,6 @@ class JoueurController extends Controller
     public function index() : View
     {
         $joueurs = $this->api->get('/raw/joueurs/');
-        //pour debug
-        //echo $equipes;
         return view('joueurs.index', compact('joueurs'));
     }
 
@@ -31,40 +29,36 @@ class JoueurController extends Controller
     	    	$validator = Validator::make($request->all(), [
 				'name' => 'required|max:50',
 				'position' => 'required',
-				'user_id' => 'required',
 			]);
 
     	if($validator->fails()) {
     		return response()->json(['success'=>false, 'errors'=>$validator->messages()], 200);
     	}
 
-	    $equipe = Equipe::find($id);
+	    $joueur = Joueur::find($id);
 
-		$equipe->name = $request->name;
-	    $equipe->admin_id = $request->admin_id;
-	    $equipe->ligue_id = $request->ligue_id;
+		$joueur->name = $request->name;
+	    $joueur->position = $request->position;
 
-	    $equipe->save();
+	    $joueur->save();
 
-	    return response()->json(['success'=>true, 'equipe'=>$equipe], 200);
+	    return response()->json(['success'=>true, 'joueur'=>$joueur], 200);
     }
 
     public function create(Request $request)
     {
 	    	$validator = Validator::make($request->all(), [
-				'name' => 'required|max:50',
-				'admin_id' => 'required',
-				'ligue_id' => 'required',
+                'name' => 'required|max:50',
+                'position' => 'required',
 			]);
 
     	if($validator->fails()) {
     		return response()->json(['success'=>false, 'errors'=>$validator->messages()], 200);
     	}
 
-		$equipe = new Equipe;
-		$equipe->name = $request->name;
-		$equipe->admin_id = (int) $request->admin_id;
-		$equipe->ligue_id = (int) $request->ligue_id;
+		$joueur = new Joueur;
+		$joueur->name = $request->name;
+		$joueur->position = $request->position;
 
 		$equipe->save();
 
@@ -77,7 +71,6 @@ class JoueurController extends Controller
 		$equipe->delete();
 
 		return response()->json(['success'=>true], 200);
-
     }
 }
 }

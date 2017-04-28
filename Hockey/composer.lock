@@ -78,7 +78,7 @@
                 "laravel",
                 "restful"
             ],
-            "time": "2017-02-10T00:56:04+00:00"
+            "time": "2017-02-10 00:56:04"
         },
         {
             "name": "dingo/blueprint",
@@ -516,7 +516,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2017-04-20T14:54:11+00:00"
+            "time": "2017-04-20 14:54:11"
         },
         {
             "name": "doctrine/inflector",
@@ -895,7 +895,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-04-21T12:10:38+00:00"
+            "time": "2017-04-21 12:10:38"
         },
         {
             "name": "laravel/tinker",
@@ -1036,7 +1036,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2017-04-19T12:26:35+00:00"
+            "time": "2017-04-19 12:26:35"
         },
         {
             "name": "league/fractal",
@@ -1326,7 +1326,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2017-04-19T09:20:05+00:00"
+            "time": "2017-04-19 09:20:05"
         },
         {
             "name": "paragonie/random_compat",
@@ -1431,7 +1431,7 @@
                 "web service",
                 "xml"
             ],
-            "time": "2017-03-20T09:06:15+00:00"
+            "time": "2017-03-20 09:06:15"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -1879,7 +1879,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2017-04-20T17:32:49+00:00"
+            "time": "2017-04-20 17:32:49"
         },
         {
             "name": "symfony/console",
@@ -1947,7 +1947,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-04-19T23:40:30+00:00"
+            "time": "2017-04-19 23:40:30"
         },
         {
             "name": "symfony/css-selector",
@@ -2056,7 +2056,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-04-20T17:12:40+00:00"
+            "time": "2017-04-20 17:12:40"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -2221,7 +2221,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-04-19T20:25:39+00:00"
+            "time": "2017-04-19 20:25:39"
         },
         {
             "name": "symfony/http-kernel",
@@ -2306,7 +2306,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2017-04-20T17:12:40+00:00"
+            "time": "2017-04-20 17:12:40"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -2623,7 +2623,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2017-04-20T17:12:40+00:00"
+            "time": "2017-04-20 17:12:40"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -3652,23 +3652,23 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "2.0.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "5795ffe5dc5b02460c3e34222fee8cbe245d8fac"
+                "reference": "144fedf9aa8e3f1c52199f3634eb699cb59741d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/5795ffe5dc5b02460c3e34222fee8cbe245d8fac",
-                "reference": "5795ffe5dc5b02460c3e34222fee8cbe245d8fac",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/144fedf9aa8e3f1c52199f3634eb699cb59741d9",
+                "reference": "144fedf9aa8e3f1c52199f3634eb699cb59741d9",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.6 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.0"
+                "phpunit/phpunit": "^5.7 || ^6.0"
             },
             "type": "library",
             "extra": {
@@ -3698,7 +3698,7 @@
                 "environment",
                 "hhvm"
             ],
-            "time": "2016-11-26T07:53:53+00:00"
+            "time": "2017-03-07T12:59:58+00:00"
         },
         {
             "name": "sebastian/exporter",

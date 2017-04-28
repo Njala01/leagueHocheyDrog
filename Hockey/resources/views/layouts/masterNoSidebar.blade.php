@@ -1,44 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ config('app.locale') }}">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
 
-    <title>Le blog Laravel Québec</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+    <!-- Icon -->
+    <link rel="icon" href="../../../public/NHL_LOGO.png">
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>NHL.com</title>
 
-    <script
-        src="https://code.jquery.com/jquery-1.9.1.min.js"
-        integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ="
-        crossorigin="anonymous"></script>
+        <!-- Styles -->
+    <link href="{{ asset('css/hockey.css') }}" rel="stylesheet">
 
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-    <!-- Custom styles for this template -->
-    <link href="/css/blog.css" rel="stylesheet">
+        <!-- Scripts -->
+    <script>
+        window.Laravel = {!! json_encode([
+            'csrfToken' => csrf_token(),
+        ]) !!};
+    </script>
   </head>
 
-  <body>
+  <body style="background-color: #ececec">
 
   @include('layouts.nav')
 
 
-    <div class="container">
+    <div class="container" style="min-height:800px;">
 
       <div class="row">
-      
-         @yield('content')
 
+      <div class="col-xs-12">
+      {{ csrf_field() }}
+         @yield('content')
+      </div>
       </div><!-- /.row -->
 
     </div><!-- /.container -->
 
     @include('layouts.footer')
+
+    <!-- Scripts -->
+    <script
+    src="https://code.jquery.com/jquery-1.9.1.min.js"
+    integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ="
+    crossorigin="anonymous">
+    </script>
+
+    <script 
+    type="text/javascript" 
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+    </script>
+
+    @yield('scripts')
 
   </body>
 </html>
