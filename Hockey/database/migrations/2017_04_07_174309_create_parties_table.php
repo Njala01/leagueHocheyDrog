@@ -17,7 +17,7 @@ class CreatePartiesTable extends Migration
             $table->increments('id');
             $table->integer('local_team');
             $table->integer('visitor_team');
-            $table->integer('id_saison');
+            $table->integer('saison_id');
             $table->string('titre', 50);
             $table->string('lieu', 50);
             $table->datetime('date');

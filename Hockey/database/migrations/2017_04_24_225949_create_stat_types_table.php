@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStatsTable extends Migration
+class CreateStatTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,11 @@ class CreateStatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('stats', function (Blueprint $table) {
+        Schema::create('stat_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('stat_type_id');
-            $table->integer('partie_id');
-            $table->integer('player_id');
-            $table->integer('periode');
-            $table->time('time');
+            $table->string('nom');
             $table->timestamps();
         });
-
-      
     }
 
     /**
@@ -33,6 +27,6 @@ class CreateStatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stats');
+        Schema::dropIfExists('stat_types');
     }
 }
