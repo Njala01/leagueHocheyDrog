@@ -12,7 +12,13 @@ class UserSeeder extends Seeder
     public function run()
     {
         //
+          $type = [
+        ['nom' => 'admin'],
+        ];
+        foreach($type as $type){
+            App\Role::create($type);
+        }
 
-        factory(App\User::class, 10)->create();
+        factory(App\User::class, 50)->create();
     }
 }

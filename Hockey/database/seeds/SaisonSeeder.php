@@ -12,14 +12,13 @@ class SaisonSeeder extends Seeder
     public function run()
     {
         //
-    	factory(App\Saison::class)->create()->each(function($s){
+        factory(App\Saison::class, 10)->create()->each(function($s){
             
-            $s->partie()->saveMany(factory(App\Partie::class, 10)->create()->each(function ($p){
+            $s->partie()->saveMany(factory(App\Partie::class, 10)->create()->each(function ($e){
 
-                $p->stats()->saveMany(factory(App\Stats::class, 10)->make());
+                $e->stats()->saveMany(factory(App\Stats::class, 10)->make());
 
             }));
         });
-
     }
 }
