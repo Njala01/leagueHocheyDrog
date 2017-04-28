@@ -4,7 +4,7 @@
 
 <h3>Les équipes {{ $id }}</h3>
 
-<table class="table table-striped table-bordered">378-7144
+<table class="table table-striped table-bordered">
 	<tr>
 		<th>Nom</th>
 		<th>Position</th>

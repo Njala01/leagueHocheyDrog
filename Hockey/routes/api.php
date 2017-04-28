@@ -72,7 +72,7 @@ $api->version('v1', [], function (Router $api) {
 	Route::delete('/joueurs/edit/{joueur}', ['as' => 'joueurs.destroy', 'uses' => 'App\Http\Controllers\JoueurController@destroy']);
 
 	//LIGUES
-	$api->get('/raw/ligues', 'App\Http\Controllers\Api\V1\LigueController@index');
+	$api->get('/raw/ligues', 'App\Http\Controllers\Api\V1\LigueController@list');
 	// Lister les joueurs et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
     // Restreint aux rôles : admin
     Route::post('/ligues/edit', ['as' => 'ligues.create', 'uses' => 'App\Http\Controllers\LigueController@create']);
@@ -80,7 +80,7 @@ $api->version('v1', [], function (Router $api) {
 	Route::delete('/ligues/edit/{ligue}', ['as' => 'ligues.destroy', 'uses' => 'App\Http\Controllers\LigueController@destroy']);
 
 		//LIGUES
-	$api->get('/raw/matchs', 'App\Http\Controllers\Api\V1\MatchController@index');
+	$api->get('/raw/matchs', 'App\Http\Controllers\Api\V1\MatchController@list');
 	// Lister les joueurs et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
     // Restreint aux rôles : admin
     Route::post('/matchs/edit', ['as' => 'matchs.create', 'uses' => 'App\Http\Controllers\MatchController@create']);

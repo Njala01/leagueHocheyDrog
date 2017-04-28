@@ -82,7 +82,7 @@ $(document).ready(function() {
 				{
 					tr.removeClass('danger');
 
-				$('table tr:last').prev().after('<tr id="' + data.equipe.id + '"><td><input class="form-control Nom" name="Nom" value="' + data.equipe.name + '"></td><td><input class="form-control Admin" name="Admin" value="' + data.equipe.admin_id + '"></td> <td><input class="form-control id_saison" name="id_saison" value="' + data.equipe.ligue_id + '"></td><td><button class="btn btn-danger EffacerPartie"><span class="glyphicon glyphicon-trash"></span></button></td><button class="btn btn-default GererJoueurs">Gérer Joueurs</button></tr>').fadeIn(500);				
+				$('table tr:last').prev().after('<tr id="' + data.equipe.id + '"><td><input class="form-control Nom" name="Nom" value="' + data.equipe.name + '"></td><td><input class="form-control Admin" name="Admin" value="' + data.equipe.admin_id + '"></td> <td><input class="form-control id_saison" name="id_saison" value="' + data.equipe.ligue_id + '"></td><td><button class="btn btn-danger EffacerEquipe"><span class="glyphicon glyphicon-trash"></span></button></td><button class="btn btn-default GererJoueurs">Gérer Joueurs</button></tr>').fadeIn(500);				
 
 				$('table tr:last').find('.NewNom').val('');
 				$('table tr:last').find('.NewAdmin').val('');
