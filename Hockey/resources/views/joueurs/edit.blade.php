@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h3>Les équipes</h3>
+<h3>Les équipes {{ $id }}</h3>
 
 <table class="table table-striped table-bordered">
 	<tr>
@@ -14,7 +14,7 @@
 	@foreach ($joueurs as $joueur)
 	<tr id="{{$joueur->id}}">
 		<td><input class="form-control Nom" name="Nom" value="{{$joueur->name}}"></td> 
-		<td><input class="form-control Position" name="Position" value="{{$joueur->position}}"></td> 
+		<td><input class="form-control Position" name="Position" value="{{$joueur->position}}"></td>
 		<td><input class="form-control Equipe" name="Equipe" value="{{$joueur->equipe->name}}"></td>
 		<td><button class="btn btn-danger EffacerJoueur"><span class="glyphicon glyphicon-trash"></span></button></td>
 	</tr>
@@ -22,8 +22,7 @@
 
 	<tr>
 		<td><input class="form-control NewNom" name="NewNom" value=""></td> 
-		<td><input class="form-control NewPosition" name="NewPosition" value=""></td> 
-		<td><input class="form-control NewEquipe" name="NewEquipe" value=""></td>
+		<td><input class="form-control NewPosition" name="NewPosition" value=""></td>
 		<td><button id="AjouterJoueur" class="btn btn-default"><span class="glyphicon glyphicon-floppy-save"></span></button></td>
 	 </tr>
 
@@ -45,7 +44,7 @@ $(document).ready(function() {
 			data: {
 				name: $(this).closest('tr').find('.NewNom').val(),
 				position: $(this).closest('tr').find('.NewPosition').val(),
-				equipe_name: $(this).closest('tr').find('.NewEquipe').val()
+				equipe_name: {{ $id }}
 	      	},
 			dataType: 'json',
 			beforeSend: function (xhr) {
@@ -78,8 +77,7 @@ $(document).ready(function() {
 				$('table tr:last').prev().after('<tr id="' + data.joueur.id + '"><td><input class="form-control Nom" name="Nom" value="' + data.joueur.name + '"></td><td><input class="form-control Admin" name="Admin" value="' + data.joueur.position + '"></td> <td><input class="form-control id_saison" name="id_saison" value="' + data.joueur.equipe_name + '"></td><td><button class="btn btn-danger EffacerPartie"><span class="glyphicon glyphicon-trash"></span></button></td></tr>').fadeIn(500);				
 
 				$('table tr:last').find('.NewNom').val('');
-				$('table tr:last').find('.NewAdmin').val('');
-				$('table tr:last').find('.NewLigue').val('');
+				$('table tr:last').find('.NewPosition').val('');
 			}
 			},
 			error: function (xhr, ajaxOptions, thrownError) {

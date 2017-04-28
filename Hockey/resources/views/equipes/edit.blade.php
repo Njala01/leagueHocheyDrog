@@ -16,7 +16,9 @@
 		<td><input class="form-control Nom" name="Nom" value="{{$equipe->name}}"></td> 
 		<td><input class="form-control Admin" name="Admin" value="{{$equipe->admin_id}}"></td> 
 		<td><input class="form-control Ligue" name="Ligue" value="{{$equipe->ligue_id}}"></td>
-		<td><button class="btn btn-danger EffacerEquipe"><span class="glyphicon glyphicon-trash"></span></button></td>
+		<td style="min-width:180px;"><button class="btn btn-danger EffacerEquipe"><span class="glyphicon glyphicon-trash"></span></button>
+			<button class="btn btn-default GererJoueurs">Gérer Joueurs</button>
+		</td>
 	</tr>
 	@endforeach
 
@@ -34,6 +36,11 @@
 @section('scripts')
 <script>
 $(document).ready(function() {
+
+	$('body').on('click', '.GererJoueurs', function(){
+		var tr = $(this).closest('tr').attr('id');
+		window.location.href = '/equipes/'+tr+'/joueurs/edit'
+	});
 
 	//Sur le click du bouton ajouter, on ajoute l'équipe avec les infos données
 	$('body').on('click', '#AjouterEquipe', function(){
@@ -75,7 +82,7 @@ $(document).ready(function() {
 				{
 					tr.removeClass('danger');
 
-				$('table tr:last').prev().after('<tr id="' + data.equipe.id + '"><td><input class="form-control Nom" name="Nom" value="' + data.equipe.name + '"></td><td><input class="form-control Admin" name="Admin" value="' + data.equipe.admin_id + '"></td> <td><input class="form-control id_saison" name="id_saison" value="' + data.equipe.ligue_id + '"></td><td><button class="btn btn-danger EffacerPartie"><span class="glyphicon glyphicon-trash"></span></button></td></tr>').fadeIn(500);				
+				$('table tr:last').prev().after('<tr id="' + data.equipe.id + '"><td><input class="form-control Nom" name="Nom" value="' + data.equipe.name + '"></td><td><input class="form-control Admin" name="Admin" value="' + data.equipe.admin_id + '"></td> <td><input class="form-control id_saison" name="id_saison" value="' + data.equipe.ligue_id + '"></td><td><button class="btn btn-danger EffacerPartie"><span class="glyphicon glyphicon-trash"></span></button></td><button class="btn btn-default GererJoueurs">Gérer Joueurs</button></tr>').fadeIn(500);				
 
 				$('table tr:last').find('.NewNom').val('');
 				$('table tr:last').find('.NewAdmin').val('');
