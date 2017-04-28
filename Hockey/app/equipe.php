@@ -17,7 +17,7 @@ class equipe extends Model
     	return $this->belongsTo(Ligue::class);
     }
 
-    public function joueur(){
+    public function joueurs(){
     	return $this->belongsToMany(Joueur::class);
     }
 

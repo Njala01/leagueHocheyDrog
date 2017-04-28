@@ -8,7 +8,7 @@ class joueur extends Model
 {
     //
 
-    public function equipe(){
+    public function equipes(){
     	return $this->belongsToMany(Equipe::class);
     }
 

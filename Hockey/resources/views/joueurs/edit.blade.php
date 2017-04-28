@@ -15,7 +15,7 @@
 	<tr id="{{$joueur->id}}">
 		<td><input class="form-control Nom" name="Nom" value="{{$joueur->name}}"></td> 
 		<td><input class="form-control Position" name="Position" value="{{$joueur->position}}"></td>
-		<td><input class="form-control Equipe" name="Equipe" value="{{$joueur->equipe->name}}"></td>
+		<td><input class="form-control Equipe" name="Equipe" value="{{$joueur->equipe->name or ''}}"></td>
 		<td><button class="btn btn-danger EffacerJoueur"><span class="glyphicon glyphicon-trash"></span></button></td>
 	</tr>
 	@endforeach
@@ -94,12 +94,11 @@ $(document).ready(function() {
 			type: "PUT",
 			url: '/api/joueurs/edit/' + $(this).closest('tr').attr('id'),
 			data: { 
-				id: $(this).closest('tr').attr('id'),
 				name: $(this).closest('tr').find('.Nom').val(),
 				position: $(this).closest('tr').find('.Position').val(),	
 				equipe_name: $(this).closest('tr').find('.Equipe').val()
 			},
-			success: function(data) {
+			complete: function (data) {
 				//pour deboguer
 				console.log(data);
 
@@ -120,18 +119,6 @@ $(document).ready(function() {
 				{
 					tr.removeClass('danger');
 				}
-			},
-			complete: function (data) {
-
-				tr.addClass('danger');
-				var errorString = "";
-
-					$.each(data.errors, function(key, value) {
-						if(key != undefined)
-						errorString += key + ': ' + value + '\n';
-					});
-				
-				alert(errorString);
 			}
 		});
 	});

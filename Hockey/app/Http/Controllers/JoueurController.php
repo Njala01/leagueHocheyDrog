@@ -36,23 +36,32 @@ class JoueurController extends Controller
 
     public function update(Request $request, $id)
     {
+                $equipe = Equipe::find($request->equipe_name);
+
     	    	$validator = Validator::make($request->all(), [
 				'name' => 'required|max:50',
 				'position' => 'required',
 			]);
+
+                if($equipe = null)
+                {
+                    $validator->getMessageBag()->add('equipe', 'Equipe pas trouvés');
+                }
 
     	if($validator->fails()) {
     		return response()->json(['success'=>false, 'errors'=>$validator->messages()], 200);
     	}
 
 	    $joueur = Joueur::find($id);
+        $equipe = Equipe::find($request->equipe_name);
 
 		$joueur->name = $request->name;
 	    $joueur->position = $request->position;
+        $joueur->equipes()->attach($request->equipe_name);
 
 	    $joueur->save();
 
-	    return response()->json(['success'=>true, 'joueur'=>$joueur], 200);
+	    return response()->json(['success'=>true, 'joueur'=>$joueur, 'id'=>$equipe], 200);
     }
 
     public function create(Request $request)
