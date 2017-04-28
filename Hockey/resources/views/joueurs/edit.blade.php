@@ -15,11 +15,7 @@
 	<tr id="{{$joueur->id}}">
 		<td><input class="form-control Nom" name="Nom" value="{{$joueur->name}}"></td> 
 		<td><input class="form-control Position" name="Position" value="{{$joueur->position}}"></td>
-<<<<<<< HEAD
-		<td><input class="form-control Equipe" name="Equipe" value="{{$joueur->equipe->name or ''}}"></td>
-=======
-		<td><input class="form-control Equipe" name="Equipe" value="{{$joueur->equipe->first()->name}}"></td>
->>>>>>> 834d34f4265e64ed7d766f8ff54c0dd22f7e3c4a
+		<td><input class="form-control Equipe" name="Equipe" value="{{$joueur->equipes()->first()->name or ''}}"></td>
 		<td><button class="btn btn-danger EffacerJoueur"><span class="glyphicon glyphicon-trash"></span></button></td>
 	</tr>
 	@endforeach
@@ -27,6 +23,7 @@
 	<tr>
 		<td><input class="form-control NewNom" name="NewNom" value=""></td> 
 		<td><input class="form-control NewPosition" name="NewPosition" value=""></td>
+		<td></td>
 		<td><button id="AjouterJoueur" class="btn btn-default"><span class="glyphicon glyphicon-floppy-save"></span></button></td>
 	 </tr>
 
@@ -48,7 +45,7 @@ $(document).ready(function() {
 			data: {
 				name: $(this).closest('tr').find('.NewNom').val(),
 				position: $(this).closest('tr').find('.NewPosition').val(),
-				equipe_name: {{ $id }}
+				equipe_name: '{{ $id }}'
 	      	},
 			dataType: 'json',
 			beforeSend: function (xhr) {
@@ -78,7 +75,7 @@ $(document).ready(function() {
 				{
 					tr.removeClass('danger');
 
-				$('table tr:last').prev().after('<tr id="' + data.joueur.id + '"><td><input class="form-control Nom" name="Nom" value="' + data.joueur.name + '"></td><td><input class="form-control Admin" name="Admin" value="' + data.joueur.position + '"></td> <td><input class="form-control id_saison" name="id_saison" value="' + data.joueur.equipe_name + '"></td><td><button class="btn btn-danger EffacerPartie"><span class="glyphicon glyphicon-trash"></span></button></td></tr>').fadeIn(500);				
+				$('table tr:last').prev().after('<tr id="' + data.joueur.id + '"><td><input class="form-control Nom" name="Nom" value="' + data.joueur.name + '"></td><td><input class="form-control Admin" name="Admin" value="' + data.joueur.position + '"></td> <td><input class="form-control id_saison" name="id_saison" value="' + data.equipe.name + '"></td><td><button class="btn btn-danger EffacerPartie"><span class="glyphicon glyphicon-trash"></span></button></td></tr>').fadeIn(500);				
 
 				$('table tr:last').find('.NewNom').val('');
 				$('table tr:last').find('.NewPosition').val('');

@@ -31,7 +31,8 @@ class JoueurController extends Controller
     public function edit($id) : View
     {
         $equipe = Equipe::find($id);
-        $joueurs = $equipe->joueur()->get();
+
+        $joueurs = $equipe->joueurs()->get();
     	return view('joueurs.edit', compact(['joueurs', 'id']));
     }
 
@@ -84,15 +85,15 @@ class JoueurController extends Controller
         $joueur->assist = 0;
         $joueur->points = 0;
 
-        if($request->equipe_name != 0)
-        {
-            $equipe = Equipe::find($request->equipe_name);
-            $joueur->equipe = $equipe;
-        }
-
 		$joueur->save();
 
-     	return response()->json(['success'=>true, 'joueur'=>$joueur ], 200);
+        if($request->equipe_name != 0)
+        {
+            $joueur->equipes()->attach($request->equipe_name);
+            $equipe = Equipe::find($request->equipe_name);
+        }
+
+     	return response()->json(['success'=>true, 'joueur'=>$joueur, 'equipe'=>$equipe ], 200);
     }
 
     public function destroy($id)
@@ -103,7 +104,3 @@ class JoueurController extends Controller
 		return response()->json(['success'=>true], 200);
     }
 }
-/*<<<<<<< HEAD
-
-=======
->>>>>>> 4e906b814ca625bc96eecba8ae14a38f0c010bfc*/
