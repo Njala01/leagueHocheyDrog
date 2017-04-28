@@ -38,7 +38,7 @@ class User extends Authenticatable
     }
 
 
-    public function equipes()
+    /*public function equipes()
     {
         return $this->hasMany(Equipe::class);
     }
@@ -46,7 +46,7 @@ class User extends Authenticatable
     public function SaveTeam(Equipe $equipe)
     {
         $this->equipes()->save($equipe);
-    }
+    }*/
 
     public function roles()
     {
