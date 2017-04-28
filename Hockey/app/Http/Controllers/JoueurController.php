@@ -73,4 +73,4 @@ class JoueurController extends Controller
 		return response()->json(['success'=>true], 200);
     }
 }
-}
+

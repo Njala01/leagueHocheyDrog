@@ -15,4 +15,6 @@ class partie extends Model
     public function stats(){
     	return $this->hasMany(Stats::class);
     }
+
+    
 }

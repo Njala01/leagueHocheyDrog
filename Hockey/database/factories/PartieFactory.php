@@ -10,8 +10,8 @@ $factory->define(Partie::class, function (Faker $faker) {
     $lose_team = App\Equipe::all()->random()->id;
     $winscore = mt_rand(2,5);
 
-    $start_date = '2016-12-31 00:00:00';
-    $end_date = '2018-01-01 00:00:00';
+    $start_date = '2015-12-31 00:00:00';
+    $end_date = '2017-01-01 00:00:00';
 
     $min = strtotime($start_date);
     $max = strtotime($end_date);
@@ -35,10 +35,10 @@ $factory->define(Partie::class, function (Faker $faker) {
     'titre' => 'match',
     'lieu' => str_random(7),
     'date' => $start,
-    /*'winning_team' => $win_team,
+    'winning_team' => $win_team,
     'losing_team' => $lose_team,
     'final_score_local' => $winscore,
-    'final_score_visitor' => $winscore - 2,*/
+    'final_score_visitor' => $winscore - 2,
 
     ];
 });
