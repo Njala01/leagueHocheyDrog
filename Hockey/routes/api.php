@@ -26,7 +26,8 @@ $api->version('v1', [], function (Router $api) {
 	// Restreint aux rôles : admin
     $api->post('/equipes/edit', ['as' => 'equipes.create', 'uses' => 'App\Http\Controllers\EquipeController@create']);
 	//$api->put('/equipes/edit/{equipe}', ['as' => 'equipes.update', 'uses' => 'App\Http\Controllers\EquipeController@update']);
-	$api->put('/equipes/edit/{equipe}', function() {
+	$api->put('/equipes/edit/{equipe}', ['as' => 'equipes.update', 'uses' => 'App\Http\Controllers\EquipeController@update']
+       /* function() {
 
 		$rules = [
             'name' => ['required', 'max:50'],
@@ -42,7 +43,8 @@ $api->version('v1', [], function (Router $api) {
         	return response()->json(['success'=>false, 'errors'=>$validator->messages()], 200);
             //throw new Dingo\Api\Exception\StoreResourceFailedException('Could not create new user.', $validator->errors());
         }
-	});
+	}*/
+    );
 	$api->delete('/equipes/edit/{equipe}', ['as' => 'equipes.destroy', 'uses' => 'App\Http\Controllers\EquipeController@destroy']);
 
     //PARTIES
@@ -62,7 +64,7 @@ $api->version('v1', [], function (Router $api) {
 	$api->delete('/joueurs/edit/{joueur}', ['as' => 'joueurs.destroy', 'uses' => 'App\Http\Controllers\JoueurController@destroy']);
 
 	//SAISONS
-	$api->get('/raw/joueurs', 'App\Http\Controllers\Api\V1\JoueurController@index');
+	$api->get('/raw/joueurs', 'App\Http\Controllers\Api\V1\JoueurController@list');
 	// Lister les joueurs et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
     // Restreint aux rôles : admin
     Route::post('/joueurs/edit', ['as' => 'joueurs.create', 'uses' => 'App\Http\Controllers\JoueurController@create']);

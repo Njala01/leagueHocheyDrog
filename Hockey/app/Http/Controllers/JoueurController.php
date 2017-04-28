@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Validator;
 use Illuminate\Http\Request;
 use App\Joueur;
+use App\Equipe;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\View\View;
 
@@ -18,10 +19,19 @@ class JoueurController extends Controller
         return view('joueurs.index', compact('joueurs'));
     }
 
-    public function edit() : View
+        public function editAll() : View
     {
-    	$joueurs = $this->api->get('/raw/joueurs/');
-    	return view('joueurs.edit', compact('joueurs'));
+        //$joueurs = $this->api->get('/raw/joueurs/');
+        $joueurs = Joueur::All();
+        $id = 0;
+        return view('joueurs.edit', compact(['joueurs', 'id']));
+    }
+
+    public function edit($id) : View
+    {
+        $equipe = Equipe::find($id);
+        $joueurs = $equipe->joueur();
+    	return view('joueurs.edit', compact(['joueurs', 'id']));
     }
 
     public function update(Request $request, $id)
@@ -59,18 +69,31 @@ class JoueurController extends Controller
 		$joueur = new Joueur;
 		$joueur->name = $request->name;
 		$joueur->position = $request->position;
+        $joueur->partieJouer = 0;
+        $joueur->but = 0;
+        $joueur->assist = 0;
+        $joueur->points = 0;
 
-		$equipe->save();
+        if($request->equipe_name != 0)
+        {
+            $equipe = Equipe::find($request->equipe_name);
+            $joueur->equipe = $equipe;
+        }
 
-     	return response()->json(['success'=>true, 'equipe'=>$equipe ], 200);
+		$joueur->save();
+
+     	return response()->json(['success'=>true, 'joueur'=>$joueur ], 200);
     }
 
     public function destroy($id)
     {
-		$equipe = Equipe::find($id);
-		$equipe->delete();
+		$joueur = Joueur::find($id);
+		$joueur->delete();
 
 		return response()->json(['success'=>true], 200);
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4e906b814ca625bc96eecba8ae14a38f0c010bfc

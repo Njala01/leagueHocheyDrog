@@ -15,11 +15,12 @@ Route::get('/', ['as' => 'equipes.index', 'uses' => 'EquipeController@index'])->
 Route::get('/equipes', ['as' => 'equipes.index', 'uses' => 'EquipeController@index']);
 Route::get('/equipes/edit', ['as' => 'equipes.edit', 'uses' => 'EquipeController@edit']);
 
+Route::get('/joueurs/edit', ['as' => 'joueurs.editAll', 'uses' => 'JoueurController@editAll']);
+Route::get('/equipes/{id}/joueurs', ['as' => 'joueurs.index', 'uses' => 'JoueurController@index']);
+Route::get('/equipes/{id}/joueurs/edit', ['as' => 'joueurs.edit', 'uses' => 'JoueurController@edit']);
+
 Route::get('/parties', ['as' => 'parties.index', 'uses' => 'PartieController@index']);
 Route::get('/parties/edit', ['as' => 'parties.edit', 'uses' => 'PartieController@edit']);
-
-Route::get('/joueurs', ['as' => 'joueurs.index', 'uses' => 'JoueurController@index']);
-Route::get('/joueurs/edit', ['as' => 'joueurs.edit', 'uses' => 'JoueurController@edit']);
 
 Route::get('/saisons', ['as' => 'saisons.index', 'uses' => 'SaisonController@index']);
 Route::get('/saisons/edit', ['as' => 'saisons.edit', 'uses' => 'SaisonController@edit']);
