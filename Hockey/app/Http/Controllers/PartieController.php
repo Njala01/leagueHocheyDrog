@@ -41,7 +41,7 @@ class PartieController extends Controller
     	    	$validator = Validator::make($request->all(), [
 				'local_team' => 'required',
 				'visitor_team' => 'required',
-				'id_saison' => 'required',
+				'saison_id' => 'required',
 				'titre' => 'required|max:50',
 				'lieu' => 'required|max:50',
 				'date' => 'required|date',
@@ -55,7 +55,7 @@ class PartieController extends Controller
 
 		$partie->local_team = $request->local_team;
 	    $partie->visitor_team = $request->visitor_team;
-	    $partie->id_saison = $request->id_saison;
+	    $partie->saison_id = $request->saison_id;
 	    $partie->titre = $request->titre;
 	    $partie->lieu = $request->lieu;
 	    $partie->date = $request->date;
@@ -70,7 +70,7 @@ class PartieController extends Controller
     	$validator = Validator::make($request->all(), [
 				'local_team' => 'required',
 				'visitor_team' => 'required',
-				'id_saison' => 'required',
+				'saison_id' => 'required',
 				'titre' => 'required|max:50',
 				'lieu' => 'required|max:50',
 				'date' => 'required|date',
@@ -83,7 +83,7 @@ class PartieController extends Controller
 		$p = new Partie;
 		$p->local_team = (int) $request->local_team;
 		$p->visitor_team = (int) $request->visitor_team;
-		$p->id_saison = (int) $request->id_saison;
+		$p->saison_id = (int) $request->saison_id;
 		$p->titre = $request->titre;
 		$p->lieu = $request->lieu;
 		$p->date = $request->date;

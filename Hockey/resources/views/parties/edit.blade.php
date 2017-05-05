@@ -18,7 +18,7 @@
 	<tr id="{{$partie->id}}">
 		<td><input class="form-control local_team" name="local_team" value="{{$partie->local_team}}"></td> 
 		<td><input class="form-control visitor_team" name="visitor_team" value="{{$partie->visitor_team}}"></td> 
-		<td><input class="form-control id_saison" name="id_saison" value="{{$partie->id_saison}}"></td> 
+		<td><input class="form-control saison_id" name="saison_id" value="{{$partie->saison_id}}"></td> 
 		<td><input class="form-control titre" name="titre" value="{{$partie->titre}}"></td> 
 		<td><input class="form-control lieu" name="lieu" value="{{$partie->lieu}}"></td> 
 		<td><input class="form-control date" name="date" value="{{$partie->date}}"></td>
@@ -29,7 +29,7 @@
 	<tr>
 		<td><input class="form-control NEWlocal_team" name="NEWlocal_team" value=""></td> 
 		<td><input class="form-control NEWvisitor_team" name="NEWvisitor_team" value=""></td> 
-		<td><input class="form-control NEWid_saison" name="NEWid_saison" value=""></td>
+		<td><input class="form-control NEWsaison_id" name="NEWsaison_id" value=""></td>
 		<td><input class="form-control NEWtitre" name="NEWtitre" value=""></td>
 		<td><input class="form-control NEWlieu" name="NEWlieu" value=""></td>
 		<td><input class="form-control NEWdate" name="NEWdate" value=""></td>
@@ -55,11 +55,11 @@ $(document).ready(function() {
 
 		$.ajax({
 			type: 'POST',
-			url: "/parties/edit",
+			url: "/api/parties/edit",
 			data: {
 				local_team: $(this).closest('tr').find('.NEWlocal_team').val(),
 				visitor_team: $(this).closest('tr').find('.NEWvisitor_team').val(),
-				id_saison: $(this).closest('tr').find('.NEWid_saison').val(),
+				saison_id: $(this).closest('tr').find('.NEWsaison_id').val(),
 				titre: $(this).closest('tr').find('.NEWtitre').val(),
 				lieu: $(this).closest('tr').find('.NEWlieu').val(),
 				date: $(this).closest('tr').find('.NEWdate').val(),
@@ -92,11 +92,11 @@ $(document).ready(function() {
 				{
 					tr.removeClass('danger');
 
-				$('table tr:last').prev().after('<tr id="' + data.p.id + '"><td><input class="form-control local_team" name="local_team" value="' + data.p.local_team + '"></td><td><input class="form-control visitor_team" name="visitor_team" value="' + data.p.visitor_team + '"></td> <td><input class="form-control id_saison" name="id_saison" value="' + data.p.id_saison + '"></td><td><input class="form-control titre" name="titre" value="' + data.p.titre + '"></td><td><input class="form-control lieu" name="lieu" value="' + data.p.lieu + '"></td><td><input class="form-control date" name="date" value="' + data.p.date + '"></td><td><button class="btn btn-danger EffacerPartie"><span class="glyphicon glyphicon-trash"></span></button></td></tr>').fadeIn(500);				
+				$('table tr:last').prev().after('<tr id="' + data.p.id + '"><td><input class="form-control local_team" name="local_team" value="' + data.p.local_team + '"></td><td><input class="form-control visitor_team" name="visitor_team" value="' + data.p.visitor_team + '"></td> <td><input class="form-control saison_id" name="saison_id" value="' + data.p.saison_id + '"></td><td><input class="form-control titre" name="titre" value="' + data.p.titre + '"></td><td><input class="form-control lieu" name="lieu" value="' + data.p.lieu + '"></td><td><input class="form-control date" name="date" value="' + data.p.date + '"></td><td><button class="btn btn-danger EffacerPartie"><span class="glyphicon glyphicon-trash"></span></button></td></tr>').fadeIn(500);				
 
 				$('table tr:last').find('.NEWlocal_team').val('');
 				$('table tr:last').find('.NEWvisitor_team').val('');
-				$('table tr:last').find('.NEWid_saison').val('');
+				$('table tr:last').find('.NEWsaison_id').val('');
 				$('table tr:last').find('.NEWtitre').val('');
 				$('table tr:last').find('.NEWlieu').val('');
 				$('table tr:last').find('.NEWdate').val('');
@@ -117,7 +117,7 @@ $(document).ready(function() {
 				id: $(this).closest('tr').attr('id'),
 				local_team: $(this).closest('tr').find('.local_team').val(),
 				visitor_team: $(this).closest('tr').find('.visitor_team').val(),	
-				id_saison: $(this).closest('tr').find('.id_saison').val(),
+				saison_id: $(this).closest('tr').find('.saison_id').val(),
 				titre: $(this).closest('tr').find('.titre').val(),
 				lieu: $(this).closest('tr').find('.lieu').val(),
 				date: $(this).closest('tr').find('.date').val()
