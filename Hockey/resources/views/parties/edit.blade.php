@@ -16,9 +16,33 @@
 	</tr>
 	@foreach ($parties as $partie)
 	<tr id="{{$partie->id}}">
-		<td><input class="form-control local_team" name="local_team" value="{{$partie->local_team}}"></td> 
-		<td><input class="form-control visitor_team" name="visitor_team" value="{{$partie->visitor_team}}"></td> 
-		<td><input class="form-control saison_id" name="saison_id" value="{{$partie->saison_id}}"></td> 
+		<td><select class="form-control local_team">
+		@foreach ($equipes as $equipe)
+		@if($equipe->id == $partie->local_team)
+		<option selected="true" value="{{$equipe->id}}">{{$equipe->name}}</option>
+		@else
+		<option value="{{$equipe->id}}">{{$equipe->name}}</option>
+		@endif
+		@endforeach
+		</select></td> 
+		<td><select class="form-control visitor_team">
+		@foreach ($equipes as $equipe)
+		@if($equipe->id == $partie->visitor_team)
+		<option selected="true" value="{{$equipe->id}}">{{$equipe->name}}</option>
+		@else
+		<option value="{{$equipe->id}}">{{$equipe->name}}</option>
+		@endif
+		@endforeach
+		</select></td> 
+		<td><select class="form-control saison_id">
+		@foreach ($saisons as $saison)
+		@if($saison->id == $partie->saison_id)
+		<option selected="true" value="{{$saison->id}}">{{$saison->name}}</option>
+		@else
+		<option value="{{$saison->id}}">{{$saison->name}}</option>
+		@endif
+		@endforeach
+		</select></td> 
 		<td><input class="form-control titre" name="titre" value="{{$partie->titre}}"></td> 
 		<td><input class="form-control lieu" name="lieu" value="{{$partie->lieu}}"></td> 
 		<td><input class="form-control date" name="date" value="{{$partie->date}}"></td>
@@ -27,9 +51,21 @@
 	@endforeach
 
 	<tr>
-		<td><input class="form-control NEWlocal_team" name="NEWlocal_team" value=""></td> 
-		<td><input class="form-control NEWvisitor_team" name="NEWvisitor_team" value=""></td> 
-		<td><input class="form-control NEWsaison_id" name="NEWsaison_id" value=""></td>
+		<td><select class="form-control NEWlocal_team">
+		@foreach ($equipes as $equipe)
+		<option value="{{$equipe->id}}">{{$equipe->name}}</option>
+		@endforeach
+		</select></td> 
+		<td><select class="form-control NEWvisitor_team">
+		@foreach ($equipes as $equipe)
+		<option value="{{$equipe->id}}">{{$equipe->name}}</option>
+		@endforeach
+		</select></td> 
+		<td><select class="form-control NEWsaison_id">
+		@foreach ($saisons as $saison)
+		<option value="{{$saison->id}}">{{$saison->name}}</option>
+		@endforeach
+		</select></td>
 		<td><input class="form-control NEWtitre" name="NEWtitre" value=""></td>
 		<td><input class="form-control NEWlieu" name="NEWlieu" value=""></td>
 		<td><input class="form-control NEWdate" name="NEWdate" value=""></td>

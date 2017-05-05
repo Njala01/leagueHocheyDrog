@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use Validator;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-=======
-
->>>>>>> a1c179a0234692c92ed5c08bd5f6726607be4953
 use App\Saison;
 use App\Ligue;
 use App\Joueur;
@@ -86,14 +82,10 @@ class SaisonController extends Controller
 
     public function destroy($id)
     {
-		$equipe = Equipe::find($id);
-		$equipe->delete();
+		$saison = Saison::find($id);
+		$saison->delete();
 
 		return response()->json(['success'=>true], 200);
 
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> a1c179a0234692c92ed5c08bd5f6726607be4953
 }

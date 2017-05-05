@@ -16,7 +16,7 @@
 		<td><input class="form-control Nom" name="Nom" value="{{$equipe->name}}"></td> 
 		<td><select class="form-control Admin">
 		@foreach ($admins as $admin)
-		@if($admin->id === $equipe->admin_id)
+		@if($admin->id == $equipe->admin_id)
 		<option selected="true" value="{{$admin->id}}">{{$admin->name}}</option>
 		@else
 		<option value="{{$admin->id}}">{{$admin->name}}</option>
@@ -25,7 +25,7 @@
 		</select></td> 
 		<td><select class="form-control Ligue">
 		@foreach ($ligues as $ligue)
-		@if($ligue->id === $equipe->ligue_id)
+		@if($ligue->id == $equipe->ligue_id)
 		<option selected="true" value="{{$ligue->id}}">{{$ligue->name}}</option>
 		@else
 		<option value="{{$ligue->id}}">{{$ligue->name}}</option>

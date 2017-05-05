@@ -8,6 +8,7 @@ use Dingo\Api\Routing\Helpers;
 use Illuminate\View\View;
 use App\Partie;
 use App\Saison;
+use App\Equipe;
 use Carbon;
 
 class PartieController extends Controller
@@ -33,7 +34,9 @@ class PartieController extends Controller
         $saison = Saison::find($id);
 
         $parties = $saison->partie()->get();
-    	return view('parties.edit', compact(['parties', 'id']));
+        $equipes = Equipe::all(['id', 'name']);
+        $saisons = Saison::all(['id', 'name']);
+    	return view('parties.edit', compact(['parties', 'id', 'equipes', 'saisons']));
     }
 
         public function update(Request $request, $id)

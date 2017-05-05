@@ -56,7 +56,7 @@ $api->version('v1', [], function (Router $api) {
     $api->delete('/parties/edit/{partie}', ['as' => 'equipes.destroy', 'uses' => 'App\Http\Controllers\PartieController@destroy']);
 
     //JOUEURS
-    $api->get('/raw/joueurs', 'App\Http\Controllers\Api\V1\JoueurController@index');
+    $api->get('/raw/joueurs', 'App\Http\Controllers\Api\V1\JoueurController@list');
     // Lister les joueurs et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
     // Restreint aux rôles : admin
     $api->post('/joueurs/edit', ['as' => 'joueurs.create', 'uses' => 'App\Http\Controllers\JoueurController@create']);

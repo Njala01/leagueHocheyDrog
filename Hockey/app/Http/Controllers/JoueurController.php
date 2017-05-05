@@ -32,9 +32,9 @@ class JoueurController extends Controller
     public function edit($id) : View
     {
         $equipe = Equipe::find($id);
-
         $joueurs = $equipe->joueurs()->get();
         $equipes = Equipe::All(['id', 'name']);
+
     	return view('joueurs.edit', compact(['joueurs', 'id', 'equipes']));
     }
 
@@ -61,6 +61,7 @@ class JoueurController extends Controller
 
 		$joueur->name = $request->name;
 	    $joueur->position = $request->position;
+
         $joueur->equipes()->detach($equipe->id);
         $joueur->equipes()->attach($request->equipe_name);
 

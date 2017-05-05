@@ -26,7 +26,7 @@
 		</select></td> 
 		<td><input class="form-control Debut" name="Debut" value="{{$saison->start_date}}"></td>
 		<td><input class="form-control Fin" name="Fin" value="{{$saison->end_date}}"></td>
-		<td style="min-width:180px;"><button class="btn btn-danger EffacerSaison"><span class="glyphicon glyphicon-trash"></span></button>
+		<td style="min-width:190px;"><button class="btn btn-danger EffacerSaison"><span class="glyphicon glyphicon-trash"></span></button>
 		<button class="btn btn-default GererParties">Gérer Parties</button></td>
 	</tr>
 	@endforeach
@@ -166,9 +166,9 @@ $(document).ready(function() {
 
 	//Quand le bouton supprimer est appuyé, on effface la donnée
 	$('body').on('click', '.EffacerSaison', function(){
-
 		$(this).closest('tr').remove();
-
+		
+		//$.ajaxSetup({async:false}); //ne pas effacer quand ce n'est pas un success
 		$.ajax({
 			type: "DELETE",
 			url: '/api/saisons/edit/' + $(this).closest('tr').attr('id'),
@@ -176,6 +176,7 @@ $(document).ready(function() {
 				console.log(data);
 			}
 		});
+		//$.ajaxSetup({async:true});
 	});
 });
 </script>

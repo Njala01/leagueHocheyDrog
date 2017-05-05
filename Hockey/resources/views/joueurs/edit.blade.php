@@ -17,10 +17,18 @@
 		<td><input class="form-control Position" name="Position" value="{{$joueur->position}}"></td>
 		<td><select class="form-control Equipe">
 		@foreach ($equipes as $equipe)
-		@if($equipe->id === $joueur->equipe_id)
+		@if($id != 0)
+		@if($equipe->id == ($id or $joueur->equipes()->first()->id))
 		<option selected="true" value="{{$equipe->id}}">{{$equipe->name}}</option>
 		@else
 		<option value="{{$equipe->id}}">{{$equipe->name}}</option>
+		@endif
+		@else
+		@if($equipe->id == $joueur->equipes()->first()->id)
+		<option selected="true" value="{{$equipe->id}}">{{$equipe->name}}</option>
+		@else
+		<option value="{{$equipe->id}}">{{$equipe->name}}</option>
+		@endif
 		@endif
 		@endforeach
 		</select></td>
@@ -33,7 +41,7 @@
 		<td><input class="form-control NewPosition" name="NewPosition" value=""></td>
 		<td><select class="form-control Equipe">
 		@foreach ($equipes as $equipe)
-		@if($equipe->id === $id)
+		@if($equipe->id == $id)
 		<option selected="true" value="{{$equipe->id}}">{{$equipe->name}}</option>
 		@else
 		<option value="{{$equipe->id}}">{{$equipe->name}}</option>
