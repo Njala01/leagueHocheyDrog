@@ -17,7 +17,7 @@
 	<tr>
 	    <td>{{ $j->id }}</td> 
 	    <td><a href='#'>{{ $j->name }}</a></td>
-	    <td>{{ $j->equipe->first()->name}}</td>
+	    <td>{{ $j->equipes->first()->name}}</td>
 	    <td>{{ $j->points }}</td>
 	    <td>{{ $j->but }}</td>
 	    <td>{{ $j->assist }}</td>

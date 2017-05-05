@@ -24,7 +24,7 @@ Route::get('/parties', ['as' => 'parties.index', 'uses' => 'PartieController@ind
 Route::get('/parties/edit', ['as' => 'parties.edit', 'uses' => 'PartieController@editALL']);
 Route::get('/saisons/{id}/parties/edit', ['as' => 'parties.edit', 'uses' => 'PartieController@edit']);
 
-Route::get('/partieEnCour', ['as' => 'parties.enCour', 'uses' => 'PartieController@enCour']);
+Route::get('/partieEnCour/{match}', ['as' => 'parties.enCour', 'uses' => 'PartieController@enCour']);
 
 Route::get('/saisons', ['as' => 'saisons.index', 'uses' => 'SaisonController@index']);
 Route::get('/saisons/edit', ['as' => 'saisons.edit', 'uses' => 'SaisonController@edit']);

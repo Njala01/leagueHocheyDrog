@@ -104,4 +104,12 @@ class PartieController extends Controller
 		return response()->json([ 'success'=>'true' ],200);
 
     }
+
+    public function enCour($match){
+        $partie = Partie::where("id", $match);
+        $local = Equipe::where("id", $partie->local_team);
+        $visitor = Equipe::where("id", $partie->visitor_team);
+
+        return view('parties.enCour', compact(['local', 'vistor']));
+    }
 }
