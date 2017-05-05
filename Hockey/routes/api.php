@@ -64,18 +64,18 @@ $api->version('v1', [], function (Router $api) {
 	$api->delete('/joueurs/edit/{joueur}', ['as' => 'joueurs.destroy', 'uses' => 'App\Http\Controllers\JoueurController@destroy']);
 
 	//SAISONS
-	$api->get('/raw/joueurs', 'App\Http\Controllers\Api\V1\JoueurController@list');
-	// Lister les joueurs et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
+	$api->get('/raw/saisons', 'App\Http\Controllers\Api\V1\SaisonController@list');
+	// Lister les saisons et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
     // Restreint aux rôles : admin
-    Route::post('/joueurs/edit', ['as' => 'joueurs.create', 'uses' => 'App\Http\Controllers\JoueurController@create']);
-	Route::put('/joueurs/edit/{joueur}', ['as' => 'joueurs.update', 'uses' => 'App\Http\Controllers\JoueurController@update']);
-	Route::delete('/joueurs/edit/{joueur}', ['as' => 'joueurs.destroy', 'uses' => 'App\Http\Controllers\JoueurController@destroy']);
+    Route::post('/saisons/edit', ['as' => 'saisons.create', 'uses' => 'App\Http\Controllers\SaisonController@create']);
+	Route::put('/saisons/edit/{joueur}', ['as' => 'saisons.update', 'uses' => 'App\Http\Controllers\SaisonController@update']);
+	Route::delete('/saisons/edit/{saison}', ['as' => 'saisons.destroy', 'uses' => 'App\Http\Controllers\SaisonController@destroy']);
 
 	//LIGUES
 	$api->get('/raw/ligues', 'App\Http\Controllers\Api\V1\LigueController@list');
-	// Lister les joueurs et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
+	// Lister les ligues et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
     // Restreint aux rôles : admin
-    Route::post('/ligues/edit', ['as' => 'ligues.create', 'uses' => 'App\Http\Controllers\LigueController@create']);
+    Route::post('/ligues/edit', ['as' => 'ligues.create', 'uses' => 'LigueController@create']);
 	Route::put('/ligues/edit/{ligue}', ['as' => 'ligues.update', 'uses' => 'App\Http\Controllers\LigueController@update']);
 	Route::delete('/ligues/edit/{ligue}', ['as' => 'ligues.destroy', 'uses' => 'App\Http\Controllers\LigueController@destroy']);
 

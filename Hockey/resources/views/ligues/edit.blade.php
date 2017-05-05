@@ -56,7 +56,7 @@ $(document).ready(function() {
 	        	}
 			},
 			complete: function(data) {
-				console.log(data);
+				console.log(data.responseText.ligue);
 
 				if(data.success === false) 
 				{
