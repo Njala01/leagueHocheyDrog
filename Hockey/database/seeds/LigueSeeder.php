@@ -17,7 +17,7 @@ class LigueSeeder extends Seeder
             
             $l->equipe()->saveMany(factory(App\Equipe::class, 5)->create()->each(function ($e){
 
-                $e->joueur()->saveMany(factory(App\Joueur::class, 10)->make());
+                $e->joueurs()->saveMany(factory(App\Joueur::class, 10)->make());
 
             }));
         });

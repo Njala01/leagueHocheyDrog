@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Validator;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4a9ae817e6ff9801bd7dcf39e35ec2ec6a45f7ad
 use App\Saison;
 use App\Ligue;
 use App\Joueur;
@@ -88,4 +92,8 @@ class SaisonController extends Controller
 		return response()->json(['success'=>true], 200);
 
     }
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 4a9ae817e6ff9801bd7dcf39e35ec2ec6a45f7ad
 }

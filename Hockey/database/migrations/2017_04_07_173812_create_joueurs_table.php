@@ -18,10 +18,10 @@ class CreateJoueursTable extends Migration
             $table->string('name');
             $table->string('position');
             $table->integer('user_id')->nullable(true);
-            $table->integer('partieJouer');
-            $table->integer('but');
-            $table->integer('assist');
-            $table->integer('points');
+            $table->integer('partieJouer')->nullable(true);
+            $table->integer('but')->nullable(true);
+            $table->integer('assist')->nullable(true);
+            $table->integer('points')->nullable(true);
             $table->timestamps();
         });
 

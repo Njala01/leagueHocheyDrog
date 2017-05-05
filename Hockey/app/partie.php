@@ -16,5 +16,10 @@ class partie extends Model
     	return $this->hasMany(Stats::class);
     }
 
+    public function getEquipe($id){
+    	$equipe = Equipe::where('id', $id)->first()->name;
+    	return $equipe;
+    }
+
     
 }
