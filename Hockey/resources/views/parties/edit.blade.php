@@ -63,7 +63,11 @@
 		</select></td> 
 		<td><select class="form-control NEWsaison_id">
 		@foreach ($saisons as $saison)
+		@if($saison->id == $id)
+		<option selected="true" value="{{$saison->id}}">{{$saison->name}}</option>
+		@else
 		<option value="{{$saison->id}}">{{$saison->name}}</option>
+		@endif
 		@endforeach
 		</select></td>
 		<td><input class="form-control NEWtitre" name="NEWtitre" value=""></td>
@@ -128,7 +132,45 @@ $(document).ready(function() {
 				{
 					tr.removeClass('danger');
 
-				$('table tr:last').prev().after('<tr id="' + data.p.id + '"><td><input class="form-control local_team" name="local_team" value="' + data.p.local_team + '"></td><td><input class="form-control visitor_team" name="visitor_team" value="' + data.p.visitor_team + '"></td> <td><input class="form-control saison_id" name="saison_id" value="' + data.p.saison_id + '"></td><td><input class="form-control titre" name="titre" value="' + data.p.titre + '"></td><td><input class="form-control lieu" name="lieu" value="' + data.p.lieu + '"></td><td><input class="form-control date" name="date" value="' + data.p.date + '"></td><td><button class="btn btn-danger EffacerPartie"><span class="glyphicon glyphicon-trash"></span></button></td></tr>').fadeIn(500);				
+					var listeLocalString = '<select class="form-control local_team">';
+					var listeVisitorString = '<select class="form-control visitor_team">';
+					$.each(data.equipes, function(index, element)
+					{
+
+						if(element.id == data.p.local_team)
+						{
+							listeLocalString += '<option value="' + element.id + '" selected="true">' + element.name + '</option>';
+						} else
+						{
+							listeLocalString += '<option value="' + element.id + '">' + element.name + '</option>';
+						}
+
+						if(element.id == data.p.visitor_team)
+						{
+							listeVisitorString += '<option value="' + element.id + '">' + element.name + '</option>';
+						} else 
+						{
+							listeVisitorString += '<option value="' + element.id + '">' + element.name + '</option>';
+						}
+					});
+					listeLocalString += '</select>'
+					listeVisitorString += '</select>'
+
+					var listeSaisonString = '<select class="form-control saison_id">';
+					$.each(data.saisons, function(index, element)
+					{
+
+						if(element.id == data.p.saison_id)
+						{
+							listeSaisonString += '<option value="' + element.id + '" selected="true">' + element.name + '</option>';
+						} else 
+						{
+							listeSaisonString += '<option value="' + element.id + '">' + element.name + '</option>';
+						}
+					});
+					listeSaisonString += '</select>'
+
+				$('table tr:last').prev().after('<tr id="' + data.p.id + '"><td>' + listeLocalString + '</td><td>' + listeVisitorString + '</td> <td>' + listeSaisonString + '</td><td><input class="form-control titre" name="titre" value="' + data.p.titre + '"></td><td><input class="form-control lieu" name="lieu" value="' + data.p.lieu + '"></td><td><input class="form-control date" name="date" value="' + data.p.date + '"></td><td><button class="btn btn-danger EffacerPartie"><span class="glyphicon glyphicon-trash"></span></button></td></tr>').fadeIn(500);				
 
 				$('table tr:last').find('.NEWlocal_team').val('');
 				$('table tr:last').find('.NEWvisitor_team').val('');
@@ -148,7 +190,7 @@ $(document).ready(function() {
 		var tr = $(this).closest('tr');
 		$.ajax({
 			type: "PUT",
-			url: '/parties/edit/' + $(this).closest('tr').attr('id'),
+			url: '/api/parties/edit/' + $(this).closest('tr').attr('id'),
 			data: { 
 				id: $(this).closest('tr').attr('id'),
 				local_team: $(this).closest('tr').find('.local_team').val(),

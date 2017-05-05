@@ -76,8 +76,9 @@ class SaisonController extends Controller
 		$saison->save();
 
 	    $ligues = Ligue::All(['id', 'name']);
+	    $saisons = Saison::All(['id', 'name']);
 
-     	return response()->json(['success'=>true, 'saison'=>$saison, 'ligues'=>$ligues ], 200);
+     	return response()->json(['success'=>true, 'saison'=>$saison, 'ligues'=>$ligues, 'saisons'=>$saisons ], 200);
     }
 
     public function destroy($id)

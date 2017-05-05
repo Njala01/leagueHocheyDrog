@@ -56,9 +56,9 @@ class PartieController extends Controller
 
 	    $partie = Partie::find($id);
 
-		$partie->local_team = $request->local_team;
-	    $partie->visitor_team = $request->visitor_team;
-	    $partie->saison_id = $request->saison_id;
+		$partie->local_team = (int)$request->local_team;
+	    $partie->visitor_team = (int)$request->visitor_team;
+	    $partie->saison_id = (int)$request->saison_id;
 	    $partie->titre = $request->titre;
 	    $partie->lieu = $request->lieu;
 	    $partie->date = $request->date;
@@ -93,7 +93,10 @@ class PartieController extends Controller
 
 		$p->save();
 
-     	return response()->json(['p'=>$p ],200);
+                $equipes = Equipe::all(['id', 'name']);
+        $saisons = Saison::all(['id', 'name']);
+
+     	return response()->json(['p'=>$p, 'equipes'=>$equipes, 'saisons'=>$saisons ],200);
     }
 
     public function destroy($id)

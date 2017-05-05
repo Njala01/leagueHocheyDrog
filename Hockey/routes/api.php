@@ -49,11 +49,11 @@ $api->version('v1', [], function (Router $api) {
 
     //PARTIES
     $api->get('/raw/parties', 'App\Http\Controllers\Api\V1\PartieController@index');
-    // Lister les équipes et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
+    // Lister les parties et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
 	// Restreint aux rôles : admin
     $api->post('/parties/edit', ['as' => 'parties.create', 'uses' => 'App\Http\Controllers\PartieController@create']);
-    $api->put('/parties/edit/{partie}', ['as' => 'equipes.update', 'uses' => 'App\Http\Controllers\PartieController@update']);
-    $api->delete('/parties/edit/{partie}', ['as' => 'equipes.destroy', 'uses' => 'App\Http\Controllers\PartieController@destroy']);
+    $api->put('/parties/edit/{partie}', ['as' => 'parties.update', 'uses' => 'App\Http\Controllers\PartieController@update']);
+    $api->delete('/parties/edit/{partie}', ['as' => 'parties.destroy', 'uses' => 'App\Http\Controllers\PartieController@destroy']);
 
     //JOUEURS
     $api->get('/raw/joueurs', 'App\Http\Controllers\Api\V1\JoueurController@list');
