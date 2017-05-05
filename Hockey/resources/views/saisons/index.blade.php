@@ -4,9 +4,6 @@
 
 <h3>Équipes en direct de NHL.com<h3>
 
-
-	
-
 	@foreach($saisons as $s)
 	    <li>{{ $s->id }} - {{ $s->name }}</li>
 	    <table style="margin-left: 1em;">
@@ -32,11 +29,23 @@
 	   			@endif
 	   		</tr>
 	    @endforeach
-	    <tr>
-	    	<td><button type="button" class="btn btn-default">Nouveau Match</button></td>
+	    <tr  id="{{$s->id}}">
+	    	<td><button type="button" class="btn btn-default GererMatch">Gerer les Match</button></td>
 	    </tr>
 	    </table>
 
 	@endforeach
 
+@endsection
+
+@section('scripts')
+<script>
+$(document).ready(function() {
+$('body').on('click', '.GererMatch', function(){
+		var tr = $(this).closest('tr').attr('id');
+		window.location.href = 'saisons/' +tr+ '/parties/edit'
+	});
+});
+
+</script>
 @endsection

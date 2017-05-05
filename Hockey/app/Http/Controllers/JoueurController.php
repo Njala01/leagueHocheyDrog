@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Validator;
 use Illuminate\Http\Request;
+use App\Saison;
+use App\Ligue;
 use App\Joueur;
 use App\Equipe;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\View\View;
+
 
 class JoueurController extends Controller
 {
@@ -15,8 +18,9 @@ class JoueurController extends Controller
 
     public function index() : View
     {
-        $joueurs = $this->api->get('/raw/joueurs/');
-        $joueurs = Joueur::All();
+        $joueur = $this->api->get('/raw/joueurs/');
+        //pour debug
+        //echo $equipes;
         return view('joueurs.index', compact('joueurs'));
     }
 
