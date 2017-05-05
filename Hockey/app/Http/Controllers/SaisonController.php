@@ -12,7 +12,7 @@ use Illuminate\View\View;
 class SaisonController extends Controller
 {
 	use Helpers;
-	
+
     public function index() : View
     {
         $saisons = $this->api->get('/raw/saisons/');
