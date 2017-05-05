@@ -13,4 +13,9 @@ class saison extends Model
     public function partie(){
     	return $this->hasMany(Partie::class);
     }
+
+    public function getMatch($id){
+    	$matchs = Partie::where('saison_id', $id);
+    	return $match;
+    }
 }
