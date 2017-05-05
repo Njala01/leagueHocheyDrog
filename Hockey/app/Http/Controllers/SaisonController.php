@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use Validator;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\Saison;
 use App\Ligue;
+=======
+use App\Joueur;
+use App\Equipe;
+>>>>>>> 0aab8c4b31d8553304f2a428faba03d78b86c5ea
 use Dingo\Api\Routing\Helpers;
 use Illuminate\View\View;
 
 class SaisonController extends Controller
 {
+<<<<<<< HEAD
     use Helpers;
 
     public function index() : View
@@ -82,4 +88,14 @@ class SaisonController extends Controller
 		return response()->json(['success'=>true], 200);
 
     }
+=======
+	use Helpers;
+	
+    public function index() : View
+    {
+        $saisons = $this->api->get('/raw/saisons/');
+        $saisons = Saison::All();
+        return view('saisons.index', compact('saisons'));
+    }
+>>>>>>> 0aab8c4b31d8553304f2a428faba03d78b86c5ea
 }
