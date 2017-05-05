@@ -21,7 +21,8 @@ Route::get('/equipes/{id}/joueurs', ['as' => 'joueurs.index', 'uses' => 'JoueurC
 Route::get('/equipes/{id}/joueurs/edit', ['as' => 'joueurs.edit', 'uses' => 'JoueurController@edit']);
 
 Route::get('/parties', ['as' => 'parties.index', 'uses' => 'PartieController@index']);
-Route::get('/parties/edit', ['as' => 'parties.edit', 'uses' => 'PartieController@edit']);
+Route::get('/parties/edit', ['as' => 'parties.edit', 'uses' => 'PartieController@editALL']);
+Route::get('/saisons/{id}/parties/edit', ['as' => 'parties.edit', 'uses' => 'PartieController@edit']);
 
 Route::get('/partieEnCour', ['as' => 'parties.enCour', 'uses' => 'PartieController@enCour']);
 

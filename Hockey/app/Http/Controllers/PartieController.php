@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\View\View;
 use App\Partie;
+use App\Saison;
 use Carbon;
 
 class PartieController extends Controller
@@ -21,10 +22,18 @@ class PartieController extends Controller
         return view('parties.index', compact('parties'));
     }
 
-        public function edit() : View
+        public function editALL() : View
     {
-    	$parties = $this->api->get('/raw/parties/');
+    	$parties = $this->api->get('/raw/parties/'); 
     	return view('parties.edit', compact('parties'));
+    }
+
+    public function edit($id) : View
+    {
+        $saison = Saison::find($id);
+
+        $parties = $saison->partie()->get();
+    	return view('parties.edit', compact(['parties', 'id']));
     }
 
         public function update(Request $request, $id)
