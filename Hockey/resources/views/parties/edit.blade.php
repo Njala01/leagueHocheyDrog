@@ -44,6 +44,11 @@
 <script>
 $(document).ready(function() {
 
+	$('body').on('click', '.GererJoueurs', function(){
+		var tr = $(this).closest('tr').attr('id');
+		window.location.href = '/equipes/'+tr+'/joueurs/edit'
+	});
+
 	$('body').on('click', '#AjouterPartie', function(){
 
 		var tr = $(this).closest('tr');

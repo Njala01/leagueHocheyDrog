@@ -67,9 +67,9 @@ $api->version('v1', [], function (Router $api) {
 	$api->get('/raw/saisons', 'App\Http\Controllers\Api\V1\SaisonController@list');
 	// Lister les saisons et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
     // Restreint aux rôles : admin
-    Route::post('/saisons/edit', ['as' => 'saisons.create', 'uses' => 'App\Http\Controllers\SaisonController@create']);
-	Route::put('/saisons/edit/{joueur}', ['as' => 'saisons.update', 'uses' => 'App\Http\Controllers\SaisonController@update']);
-	Route::delete('/saisons/edit/{saison}', ['as' => 'saisons.destroy', 'uses' => 'App\Http\Controllers\SaisonController@destroy']);
+    Route::post('/saisons/edit', ['as' => 'saisons.create', 'uses' => 'SaisonController@create']);
+	Route::put('/saisons/edit/{id}', ['as' => 'saisons.update', 'uses' => 'SaisonController@update']);
+	Route::delete('/saisons/edit/{id}', ['as' => 'saisons.destroy', 'uses' => 'SaisonController@destroy']);
 
 	//LIGUES
 	$api->get('/raw/ligues', 'App\Http\Controllers\Api\V1\LigueController@list');

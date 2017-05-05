@@ -4,19 +4,15 @@ namespace App\Http\Controllers;
 
 use Validator;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use App\Saison;
 use App\Ligue;
-=======
 use App\Joueur;
 use App\Equipe;
->>>>>>> 0aab8c4b31d8553304f2a428faba03d78b86c5ea
 use Dingo\Api\Routing\Helpers;
 use Illuminate\View\View;
 
 class SaisonController extends Controller
 {
-<<<<<<< HEAD
     use Helpers;
 
     public function index() : View
@@ -30,31 +26,32 @@ class SaisonController extends Controller
     public function edit() : View
     {
     	$saisons = $this->api->get('/raw/saisons/');
-    	$ligues = Ligue::all(['id', 'name'])->pluck('name', 'id');
+    	$ligues = Ligue::All(['id', 'name']);
     	return view('saisons.edit', compact(['saisons', 'ligues']));
     }
 
     public function update(Request $request, $id)
     {
-    	    	$validator = Validator::make($request->all(), [
+	    	$validator = Validator::make($request->all(), [
 				'name' => 'required|max:50',
-				'admin_id' => 'required',
 				'ligue_id' => 'required',
+				'start_date' => 'required',
+				'end_date' => 'required',
 			]);
 
     	if($validator->fails()) {
     		return response()->json(['success'=>false, 'errors'=>$validator->messages()], 200);
     	}
 
-	    $equipe = Equipe::find($id);
+	    $saison = Saison::find($id);
+		$saison->name = $request->name;
+		$saison->ligue_id = $request->ligue_id;
+		$saison->start_date = $request->start_date;
+		$saison->end_date = $request->end_date;
 
-		$equipe->name = $request->name;
-	    $equipe->admin_id = $request->admin_id;
-	    $equipe->ligue_id = $request->ligue_id;
+	    $saison->save();
 
-	    $equipe->save();
-
-	    return response()->json(['success'=>true, 'equipe'=>$equipe], 200);
+	    return response()->json(['success'=>true, 'saison'=>$saison], 200);
     }
 
     public function create(Request $request)
@@ -71,13 +68,16 @@ class SaisonController extends Controller
     	}
 
 		$saison = new Saison;
-		$equipe->name = $request->name;
-		$equipe->admin_id = (int) $request->admin_id;
-		$equipe->ligue_id = (int) $request->ligue_id;
+		$saison->name = $request->name;
+		$saison->ligue_id = $request->ligue_id;
+		$saison->start_date = $request->start_date;
+		$saison->end_date = $request->end_date;
 
-		$equipe->save();
+		$saison->save();
 
-     	return response()->json(['success'=>true, 'equipe'=>$equipe ], 200);
+	    $ligues = Ligue::All(['id', 'name']);
+
+     	return response()->json(['success'=>true, 'saison'=>$saison, 'ligues'=>$ligues ], 200);
     }
 
     public function destroy($id)
@@ -88,14 +88,4 @@ class SaisonController extends Controller
 		return response()->json(['success'=>true], 200);
 
     }
-=======
-	use Helpers;
-	
-    public function index() : View
-    {
-        $saisons = $this->api->get('/raw/saisons/');
-        $saisons = Saison::All();
-        return view('saisons.index', compact('saisons'));
-    }
->>>>>>> 0aab8c4b31d8553304f2a428faba03d78b86c5ea
 }

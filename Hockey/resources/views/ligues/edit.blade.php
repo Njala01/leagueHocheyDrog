@@ -55,8 +55,8 @@ $(document).ready(function() {
 		            return xhr.setRequestHeader('X-CSRF-TOKEN', token);
 	        	}
 			},
-			complete: function(data) {
-				console.log(data.responseText.ligue);
+			success: function(data) {
+				console.log(data);
 
 				if(data.success === false) 
 				{
