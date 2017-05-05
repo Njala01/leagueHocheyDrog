@@ -4,6 +4,10 @@
 
 <h3>Équipes en direct de NHL.com<h3>
 
+<<<<<<< HEAD
+	@foreach($saisons as $e)
+	    <li>{{ $e->id }} - {{ $e->name }}</li>
+=======
 	@foreach($saisons as $s)
 	    <li>{{ $s->id }} - {{ $s->name }}</li>
 	    <table style="margin-left: 1em;">
@@ -36,6 +40,7 @@
 	    </tr>
 	    </table>
 
+>>>>>>> 4a9ae817e6ff9801bd7dcf39e35ec2ec6a45f7ad
 	@endforeach
 
 @endsection

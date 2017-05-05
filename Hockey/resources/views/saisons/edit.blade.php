@@ -4,13 +4,6 @@
 
 <h3>Les Saisons</h3>
 
-<select class="form-control LigueList">
-@foreach ($ligues as $ligue)
-<option value="{{$ligue->id}}">{{$ligue->name}}</option>
-@endforeach
-</select>
-
-
 <table class="table table-striped table-bordered">
 	<tr>
 		<th>Nom</th>
@@ -22,16 +15,29 @@
 	@foreach ($saisons as $saison)
 	<tr id="{{$saison->id}}">
 		<td><input class="form-control Nom" name="Nom" value="{{$saison->name}}"></td> 
-		<td><input class="form-control Ligue" name="Ligue" value="{{$saison->ligue_id}}"></td> 
+		<td><select class="form-control Ligue">
+		@foreach ($ligues as $ligue)
+		@if($ligue->id === $saison->ligue_id)
+		<option selected="true" value="{{$ligue->id}}">{{$ligue->name}}</option>
+		@else
+		<option value="{{$ligue->id}}">{{$ligue->name}}</option>
+		@endif
+		@endforeach
+		</select></td> 
 		<td><input class="form-control Debut" name="Debut" value="{{$saison->start_date}}"></td>
 		<td><input class="form-control Fin" name="Fin" value="{{$saison->end_date}}"></td>
-		<td><button class="btn btn-danger EffacerSaison"><span class="glyphicon glyphicon-trash"></span></button></td>
+		<td style="min-width:180px;"><button class="btn btn-danger EffacerSaison"><span class="glyphicon glyphicon-trash"></span></button>
+		<button class="btn btn-default GererParties">Gérer Parties</button></td>
 	</tr>
 	@endforeach
 
 	<tr>
 		<td><input class="form-control NewNom" name="NewNom" value=""></td> 
-		<td><input class="form-control NewLigue" name="NewLigue" value=""></td>	
+		<td><select class="form-control NewLigue">
+		@foreach ($ligues as $ligue)
+		<option value="{{$ligue->id}}">{{$ligue->name}}</option>
+		@endforeach
+		</select></td>	
 		<td><input class="form-control NewDebut" name="NewDebut" value=""></td>
 		<td><input class="form-control NewFin" name="NewFin" value=""></td> 
 		<td><button id="AjouterSaison" class="btn btn-default"><span class="glyphicon glyphicon-floppy-save"></span></button></td>
@@ -45,9 +51,15 @@
 <script>
 $(document).ready(function() {
 
+	$('body').on('click', '.GererParties', function(){
+		var tr = $(this).closest('tr').attr('id');
+		window.location.href = '/saisons/'+tr+'/parties/edit'
+	});
+
 	//Sur le click du bouton ajouter, on ajoute l'équipe avec les infos données
 	$('body').on('click', '#AjouterSaison', function(){
 		var tr = $(this).closest('tr');
+		var test = $(this).closest('tr').find('.NewLigue').val();
 
 		$.ajax({
 			type: 'POST',
@@ -85,11 +97,24 @@ $(document).ready(function() {
 				} else 
 				{
 					tr.removeClass('danger');
+					var listeString = '<select class="form-control Ligue">';
+					$.each(data.ligues, function(index, element)
+					{
 
-				$('table tr:last').prev().after('<tr id="' + data.saison.id + '"><td><input class="form-control Nom" name="Nom" value="' + data.saison.name + '"></td><td><input class="form-control Ligue" name="Ligue" value="' + data.saison.ligue_id + '"></td><td><input class="form-control Debut" name="Debut" value="' + data.saison.start_date + '"></td><td><input class="form-control Fin" name="Fin" value="' + data.saison.end_date + '"></td><td><button class="btn btn-danger EffacerSaison"><span class="glyphicon glyphicon-trash"></span></button></td></tr>').fadeIn(500);				
+						if(element.id == data.saison.ligue_id)
+						{
+							listeString += '<option value="' + element.id + '" selected="true">' + element.name + '</option>';
+						} else 
+						{
+							listeString += '<option value="' + element.id + '">' + element.name + '</option>';
+						}
+					});
+					listeString += '</select>'
+
+				$('table tr:last').prev().after('<tr id="' + data.saison.id + '"><td><input class="form-control Nom" name="Nom" value="' + data.saison.name + '"></td><td>' + listeString + '</td><td><input class="form-control Debut" name="Debut" value="' + data.saison.start_date + '"></td><td><input class="form-control Fin" name="Fin" value="' + data.saison.end_date + '"></td><td><button class="btn btn-danger EffacerSaison"><span class="glyphicon glyphicon-trash"></span></button><button class="btn btn-default GererParties">Gérer Parties</button></td></tr>').fadeIn(500);				
 
 				$('table tr:last').find('.NewNom').val('');
-				$('table tr:last').find('.NewLigue').val('');
+				$('table tr:last').find('.NewLigue').val('1');
 				$('table tr:last').find('.NewDebut').val('');
 				$('table tr:last').find('.NewFin').val('');
 			}
@@ -136,18 +161,6 @@ $(document).ready(function() {
 					tr.removeClass('danger');
 				}
 			},
-			complete: function (data) {
-
-				tr.addClass('danger');
-				var errorString = "";
-
-					$.each(data.errors, function(key, value) {
-						if(key != undefined)
-						errorString += key + ': ' + value + '\n';
-					});
-				
-				alert(errorString);
-			}
 		});
 	});
 
