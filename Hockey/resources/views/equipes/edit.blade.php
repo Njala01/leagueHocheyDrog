@@ -14,8 +14,24 @@
 	@foreach ($equipes as $equipe)
 	<tr id="{{$equipe->id}}">
 		<td><input class="form-control Nom" name="Nom" value="{{$equipe->name}}"></td> 
-		<td><input class="form-control Admin" name="Admin" value="{{$equipe->admin_id}}"></td> 
-		<td><input class="form-control Ligue" name="Ligue" value="{{$equipe->ligue_id}}"></td>
+		<td><select class="form-control Admin">
+		@foreach ($admins as $admin)
+		@if($admin->id === $equipe->admin_id)
+		<option selected="true" value="{{$admin->id}}">{{$admin->name}}</option>
+		@else
+		<option value="{{$admin->id}}">{{$admin->name}}</option>
+		@endif
+		@endforeach
+		</select></td> 
+		<td><select class="form-control Ligue">
+		@foreach ($ligues as $ligue)
+		@if($ligue->id === $equipe->ligue_id)
+		<option selected="true" value="{{$ligue->id}}">{{$ligue->name}}</option>
+		@else
+		<option value="{{$ligue->id}}">{{$ligue->name}}</option>
+		@endif
+		@endforeach
+		</select></td>
 		<td style="min-width:180px;"><button class="btn btn-danger EffacerEquipe"><span class="glyphicon glyphicon-trash"></span></button>
 			<button class="btn btn-default GererJoueurs">Gérer Joueurs</button>
 		</td>
@@ -24,8 +40,16 @@
 
 	<tr>
 		<td><input class="form-control NewNom" name="NewNom" value=""></td> 
-		<td><input class="form-control NewAdmin" name="NewAdmin" value=""></td> 
-		<td><input class="form-control NewLigue" name="NewLigue" value=""></td>
+		<td><select class="form-control NewAdmin">
+		@foreach ($admins as $admin)
+		<option value="{{$admin->id}}">{{$admin->name}}</option>
+		@endforeach
+		</select></td>
+		<td><select class="form-control NewLigue">
+		@foreach ($ligues as $ligue)
+		<option value="{{$ligue->id}}">{{$ligue->name}}</option>
+		@endforeach
+		</select></td>
 		<td><button id="AjouterEquipe" class="btn btn-default"><span class="glyphicon glyphicon-floppy-save"></span></button></td>
 	 </tr>
 
@@ -82,7 +106,37 @@ $(document).ready(function() {
 				{
 					tr.removeClass('danger');
 
-				$('table tr:last').prev().after('<tr id="' + data.equipe.id + '"><td><input class="form-control Nom" name="Nom" value="' + data.equipe.name + '"></td><td><input class="form-control Admin" name="Admin" value="' + data.equipe.admin_id + '"></td> <td><input class="form-control id_saison" name="id_saison" value="' + data.equipe.ligue_id + '"></td><td><button class="btn btn-danger EffacerEquipe"><span class="glyphicon glyphicon-trash"></span></button></td><button class="btn btn-default GererJoueurs">Gérer Joueurs</button></tr>').fadeIn(500);				
+					var listeLigueString = '<select class="form-control Ligue">';
+					$.each(data.ligues, function(index, element)
+					{
+
+						if(element.id == data.equipe.ligue_id)
+						{
+							listeLigueString += '<option value="' + element.id + '" selected="true">' + element.name + '</option>';
+						} else 
+						{
+							listeLigueString += '<option value="' + element.id + '">' + element.name + '</option>';
+						}
+					});
+					listeLigueString += '</select>'
+
+
+					var listeAdminString = '<select class="form-control Admin">';
+					$.each(data.admins, function(index, element)
+					{
+
+						if(element.id == data.equipe.admin_id)
+						{
+							listeAdminString += '<option value="' + element.id + '" selected="true">' + element.name + '</option>';
+						} else 
+						{
+							listeAdminString += '<option value="' + element.id + '">' + element.name + '</option>';
+						}
+					});
+					listeAdminString += '</select>'
+
+
+				$('table tr:last').prev().after('<tr id="' + data.equipe.id + '"><td><input class="form-control Nom" name="Nom" value="' + data.equipe.name + '"></td><td>' + listeAdminString + '</td><td>' + listeLigueString + '</td><td><button class="btn btn-danger EffacerEquipe"><span class="glyphicon glyphicon-trash"></span></button><button class="btn btn-default GererJoueurs">Gérer Joueurs</button></td></tr>').fadeIn(500);				
 
 				$('table tr:last').find('.NewNom').val('');
 				$('table tr:last').find('.NewAdmin').val('');
@@ -130,18 +184,6 @@ $(document).ready(function() {
 					tr.removeClass('danger');
 				}
 			},
-			complete: function (data) {
-
-				tr.addClass('danger');
-				var errorString = "";
-
-					$.each(data.errors, function(key, value) {
-						if(key != undefined)
-						errorString += key + ': ' + value + '\n';
-					});
-				
-				alert(errorString);
-			}
 		});
 	});
 

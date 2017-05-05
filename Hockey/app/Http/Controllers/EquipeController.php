@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Validator;
 use Illuminate\Http\Request;
 use App\Equipe;
+use App\Ligue;
+use App\User;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\View\View;
 
@@ -24,7 +26,9 @@ use Helpers;
     public function edit() : View
     {
     	$equipes = $this->api->get('/raw/equipes/');
-    	return view('equipes.edit', compact('equipes'));
+        $ligues = Ligue::All(['id', 'name']);
+        $admins = User::All(['id', 'name']);
+    	return view('equipes.edit', compact(['equipes', 'ligues', 'admins']));
     }
 
     public function update(Request $request, $id)
@@ -69,7 +73,10 @@ use Helpers;
 
 		$equipe->save();
 
-     	return response()->json(['success'=>true, 'equipe'=>$equipe ], 200);
+        $ligues = Ligue::All(['id', 'name']);
+        $admins = User::All(['id', 'name']);
+
+     	return response()->json(['success'=>true, 'equipe'=>$equipe, 'ligues'=>$ligues, 'admins'=>$admins ], 200);
     }
 
     public function destroy($id)

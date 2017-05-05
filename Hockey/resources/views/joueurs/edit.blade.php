@@ -15,7 +15,15 @@
 	<tr id="{{$joueur->id}}">
 		<td><input class="form-control Nom" name="Nom" value="{{$joueur->name}}"></td> 
 		<td><input class="form-control Position" name="Position" value="{{$joueur->position}}"></td>
-		<td><input class="form-control Equipe" name="Equipe" value="{{$joueur->equipes()->first()->name or ''}}"></td>
+		<td><select class="form-control Equipe">
+		@foreach ($equipes as $equipe)
+		@if($equipe->id === $joueur->equipe_id)
+		<option selected="true" value="{{$equipe->id}}">{{$equipe->name}}</option>
+		@else
+		<option value="{{$equipe->id}}">{{$equipe->name}}</option>
+		@endif
+		@endforeach
+		</select></td>
 		<td><button class="btn btn-danger EffacerJoueur"><span class="glyphicon glyphicon-trash"></span></button></td>
 	</tr>
 	@endforeach
@@ -23,7 +31,15 @@
 	<tr>
 		<td><input class="form-control NewNom" name="NewNom" value=""></td> 
 		<td><input class="form-control NewPosition" name="NewPosition" value=""></td>
-		<td></td>
+		<td><select class="form-control Equipe">
+		@foreach ($equipes as $equipe)
+		@if($equipe->id === $id)
+		<option selected="true" value="{{$equipe->id}}">{{$equipe->name}}</option>
+		@else
+		<option value="{{$equipe->id}}">{{$equipe->name}}</option>
+		@endif
+		@endforeach
+		</select></td>
 		<td><button id="AjouterJoueur" class="btn btn-default"><span class="glyphicon glyphicon-floppy-save"></span></button></td>
 	 </tr>
 

@@ -24,8 +24,9 @@ class JoueurController extends Controller
     {
         //$joueurs = $this->api->get('/raw/joueurs/');
         $joueurs = Joueur::All();
+        $equipes = Equipe::All(['id', 'name']);
         $id = 0;
-        return view('joueurs.edit', compact(['joueurs', 'id']));
+        return view('joueurs.edit', compact(['joueurs', 'id', 'equipes']));
     }
 
     public function edit($id) : View
@@ -33,7 +34,8 @@ class JoueurController extends Controller
         $equipe = Equipe::find($id);
 
         $joueurs = $equipe->joueurs()->get();
-    	return view('joueurs.edit', compact(['joueurs', 'id']));
+        $equipes = Equipe::All(['id', 'name']);
+    	return view('joueurs.edit', compact(['joueurs', 'id', 'equipes']));
     }
 
     public function update(Request $request, $id)
@@ -59,6 +61,7 @@ class JoueurController extends Controller
 
 		$joueur->name = $request->name;
 	    $joueur->position = $request->position;
+        $joueur->equipes()->detach($equipe->id);
         $joueur->equipes()->attach($request->equipe_name);
 
 	    $joueur->save();
