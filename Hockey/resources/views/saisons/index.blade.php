@@ -19,13 +19,13 @@
 	   			<td>{{$match->id}}</td>
 	   			<td>{{$match->getEquipe($match->local_team)}}</td>
 	   			<td>{{$match->getEquipe($match->visitor_team)}}</td>
-	   			@if($match->final_score_local != null)
+	   			@if($match->winning_team != null && $match->losing_team != null)
 	   				<td>{{$match->final_score_local}}</td>
 	   				<td>{{$match->final_score_visitor}}</td>
 	   			@else
 	   				<td>Non fait</td>
 	   				<td>Non fait</td>
-	   				<td><a href="/partieEnCour">Marquer</a></td> 
+	   				<td><a href="/parties/marquerUnePartie/{{$match->id}}">Marquer</a></td> 
 	   			@endif
 	   		</tr>
 	    @endforeach

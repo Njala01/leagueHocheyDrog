@@ -111,6 +111,7 @@ $(document).ready(function() {
 					});
 					listeString += '</select>'
 
+				//ceci entre en conflit avec le datepicker. L'enlever au besoin
 				$('table tr:last').prev().after('<tr id="' + data.saison.id + '"><td><input class="form-control Nom" name="Nom" value="' + data.saison.name + '"></td><td>' + listeString + '</td><td><input class="form-control Debut" name="Debut" value="' + data.saison.start_date + '"></td><td><input class="form-control Fin" name="Fin" value="' + data.saison.end_date + '"></td><td><button class="btn btn-danger EffacerSaison"><span class="glyphicon glyphicon-trash"></span></button><button class="btn btn-default GererParties">Gérer Parties</button></td></tr>').fadeIn(500);				
 
 				$('table tr:last').find('.NewNom').val('');
@@ -178,6 +179,10 @@ $(document).ready(function() {
 		});
 		//$.ajaxSetup({async:true});
 	});
+	$(".Debut").datepicker({dateFormat: 'yy-mm-dd'});
+	$(".Fin").datepicker({dateFormat: 'yy-mm-dd'});
+	$(".NewDebut").datepicker({dateFormat: 'yy-mm-dd'});
+	$(".NewFin").datepicker({dateFormat: 'yy-mm-dd'});
 });
 </script>
 @endsection

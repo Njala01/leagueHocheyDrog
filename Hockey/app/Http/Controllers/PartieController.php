@@ -23,7 +23,76 @@ class PartieController extends Controller
         return view('parties.index', compact('parties'));
     }
 
-        public function editALL() : View
+    public function marquer($id){
+        $partie = Partie::find($id);
+        $local = Equipe::where("id", $partie->local_team)->first();
+        $visitor = Equipe::where("id", $partie->visitor_team)->first();
+
+        return view('parties.marquer', compact(['local', 'visitor', 'id']));
+    }
+
+    public function marquerBut(Request $request, $id){
+
+        $partie = Partie::find($id);
+
+        $equipe = Equipe::find($request->equipe);
+        $joueurBut = $equipe->joueurs()->find($request->joueurBut);
+
+        $joueurBut->but = $joueurBut->but + 1;
+        $joueurBut->points = $joueurBut->points + 1;
+        $joueurBut->save();
+
+        if($partie->local_team == $equipe->id)
+        {
+            $partie->final_score_local = $partie->final_score_local + 1;
+        } else
+        {
+            $partie->final_score_visitor = $partie->final_score_visitor + 1;
+        }
+
+        $partie->save();
+
+        if($request->joueurAssist != "")
+        {
+            $joueurAssist = $equipe->joueurs()->find($request->joueurAssist);
+            $joueurAssist->but = $joueurAssist->assist + 1;
+            $joueurAssist->points = $joueurAssist->points + 1;
+            $joueurAssist->save();
+        }
+
+        return response()->json(['p'=>$partie, $request ],200);
+    }
+
+    public function marquerTerminer($id)
+    {
+        $partie = Partie::find($id);
+
+        if($partie->final_score_local == null)
+        {
+            $partie->final_score_local = 0;
+        }
+
+        if($partie->final_score_visitor == null)
+        {
+            $partie->final_score_visitor = 0;
+        }
+
+        if($partie->final_score_local >= $partie->final_score_visitor)
+        {
+            $partie->winning_team = $partie->local_team;
+            $partie->losing_team = $partie->visitor_team;
+        } else 
+        {
+            $partie->winning_team = $partie->visitor_team;
+            $partie->losing_team = $partie->local_team;
+        }
+
+        $partie->save();
+
+        return response()->json(['p'=>$partie],200);
+    }
+
+    public function editALL() : View
     {
     	$parties = $this->api->get('/raw/parties/'); 
     	return view('parties.edit', compact('parties'));

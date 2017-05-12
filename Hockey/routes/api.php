@@ -54,6 +54,8 @@ $api->version('v1', [], function (Router $api) {
     $api->post('/parties/edit', ['as' => 'parties.create', 'uses' => 'App\Http\Controllers\PartieController@create']);
     $api->put('/parties/edit/{partie}', ['as' => 'parties.update', 'uses' => 'App\Http\Controllers\PartieController@update']);
     $api->delete('/parties/edit/{partie}', ['as' => 'parties.destroy', 'uses' => 'App\Http\Controllers\PartieController@destroy']);
+    $api->put('/parties/marquerUnePartie/but/{id}', ['as' => 'parties.marquer', 'uses' => 'App\Http\Controllers\PartieController@marquerBut']);
+    $api->put('/parties/marquerUnePartie/terminer/{id}', ['as' => 'parties.marquer', 'uses' => 'App\Http\Controllers\PartieController@marquerTerminer']);
 
     //JOUEURS
     $api->get('/raw/joueurs', 'App\Http\Controllers\Api\V1\JoueurController@list');
@@ -76,8 +78,8 @@ $api->version('v1', [], function (Router $api) {
 	// Lister les ligues et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
     // Restreint aux rôles : admin
     Route::post('/ligues/edit', ['as' => 'ligues.create', 'uses' => 'LigueController@create']);
-	Route::put('/ligues/edit/{ligue}', ['as' => 'ligues.update', 'uses' => 'App\Http\Controllers\LigueController@update']);
-	Route::delete('/ligues/edit/{ligue}', ['as' => 'ligues.destroy', 'uses' => 'App\Http\Controllers\LigueController@destroy']);
+	Route::put('/ligues/edit/{ligue}', ['as' => 'ligues.update', 'uses' => 'LigueController@update']);
+	Route::delete('/ligues/edit/{ligue}', ['as' => 'ligues.destroy', 'uses' => 'LigueController@destroy']);
 
 		//LIGUES
 	$api->get('/raw/matchs', 'App\Http\Controllers\Api\V1\MatchController@list');

@@ -14,9 +14,10 @@
 	<tr id="{{$ligue->id}}">
 		<td><input class="form-control Nom" name="Nom" value="{{$ligue->name}}"></td> 
 		<td><input class="form-control Category" name="Category" value="{{$ligue->category}}"></td> 
-		<td style="min-width:180px;">
+		<td style="min-width:250px;">
 			<button class="btn btn-danger EffacerLigue"><span class="glyphicon glyphicon-trash"></span></button>
 			<button class="btn btn-default GererEquipes">Gérer Équipes</button>
+			<button class="btn btn-default GererSaisons">Gérer Saisons</button>
 		</td>
 	</tr>
 	@endforeach
@@ -34,6 +35,16 @@
 @section('scripts')
 <script>
 $(document).ready(function() {
+
+	$('body').on('click', '.GererEquipes', function(){
+		var tr = $(this).closest('tr').attr('id');
+		window.location.href = '/ligues/'+tr+'/equipes/edit'
+	});
+
+	$('body').on('click', '.GererSaisons', function(){
+		var tr = $(this).closest('tr').attr('id');
+		window.location.href = '/ligues/'+tr+'/saisons/edit'
+	});
 
 	//Sur le click du bouton ajouter, on ajoute l'équipe avec les infos données
 	$('body').on('click', '#AjouterLigue', function(){
@@ -75,7 +86,7 @@ $(document).ready(function() {
 				{
 					tr.removeClass('danger');
 
-				$('table tr:last').prev().after('<tr id="' + data.ligue.id + '"><td><input class="form-control Nom" name="Nom" value="' + data.ligue.name + '"></td><td><input class="form-control Category" name="Category" value="' + data.ligue.category + '"></td><td><button class="btn btn-danger EffacerLigue"><span class="glyphicon glyphicon-trash"></span></button><button class="btn btn-default GererEquipes">Gérer Équipes</button></td></tr>').fadeIn(500);				
+				$('table tr:last').prev().after('<tr id="' + data.ligue.id + '"><td><input class="form-control Nom" name="Nom" value="' + data.ligue.name + '"></td><td><input class="form-control Category" name="Category" value="' + data.ligue.category + '"></td><td><button class="btn btn-danger EffacerLigue"><span class="glyphicon glyphicon-trash"></span></button><button class="btn btn-default GererEquipes">Gérer Équipes</button><button class="btn btn-default GererSaisons">Gérer Saisons</button></td></tr>').fadeIn(500);				
 
 				$('table tr:last').find('.NewNom').val('');
 				$('table tr:last').find('.NewCategory').val('');
@@ -96,8 +107,8 @@ $(document).ready(function() {
 			url: '/api/ligues/edit/' + $(this).closest('tr').attr('id'),
 			data: { 
 				id: $(this).closest('tr').attr('id'),
-				name: $(this).closest('tr').find('.NewNom').val(),
-				category: $(this).closest('tr').find('.NewCategory').val(),
+				name: $(this).closest('tr').find('.Nom').val(),
+				category: $(this).closest('tr').find('.Category').val(),
 			},
 			success: function(data) {
 				//pour deboguer
@@ -121,23 +132,11 @@ $(document).ready(function() {
 					tr.removeClass('danger');
 				}
 			},
-			complete: function (data) {
-
-				tr.addClass('danger');
-				var errorString = "";
-
-					$.each(data.errors, function(key, value) {
-						if(key != undefined)
-						errorString += key + ': ' + value + '\n';
-					});
-				
-				alert(errorString);
-			}
 		});
 	});
 
 	//Quand le bouton supprimer est appuyé, on effface la donnée
-	$('body').on('click', '.EffacerLigues', function(){
+	$('body').on('click', '.EffacerLigue', function(){
 
 		$(this).closest('tr').remove();
 

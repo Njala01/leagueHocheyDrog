@@ -31,6 +31,14 @@ use Helpers;
     	return view('equipes.edit', compact(['equipes', 'ligues', 'admins']));
     }
 
+    public function ligueEdit($id) : View
+    {
+        $equipes = Equipe::where('ligue_id', $id)->get();
+        $ligues = Ligue::All(['id', 'name']);
+        $admins = User::All(['id', 'name']);
+        return view('equipes.edit', compact(['equipes', 'ligues', 'admins']));
+    }
+
     public function update(Request $request, $id)
     {
     	    	$validator = Validator::make($request->all(), [

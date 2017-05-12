@@ -18,7 +18,7 @@
 		<td><select class="form-control Equipe">
 		@foreach ($equipes as $equipe)
 		@if($id != 0)
-		@if($equipe->id == ($id or $joueur->equipes()->first()->id))
+		@if($equipe->id == $id)
 		<option selected="true" value="{{$equipe->id}}">{{$equipe->name}}</option>
 		@else
 		<option value="{{$equipe->id}}">{{$equipe->name}}</option>

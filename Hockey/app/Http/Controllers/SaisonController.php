@@ -30,6 +30,13 @@ class SaisonController extends Controller
     	return view('saisons.edit', compact(['saisons', 'ligues']));
     }
 
+    public function SaisonEdit($id) : View
+    {
+        $saisons = Saison::where('ligue_id', $id)->get();
+        $ligues = Ligue::All(['id', 'name']);
+        return view('saisons.edit', compact(['saisons', 'ligues']));
+    }
+
     public function update(Request $request, $id)
     {
 	    	$validator = Validator::make($request->all(), [

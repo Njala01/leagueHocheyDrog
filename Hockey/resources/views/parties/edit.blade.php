@@ -237,6 +237,8 @@ $(document).ready(function() {
 			}
 		});
 	});
+	$(".date").datepicker({dateFormat: 'yy-mm-dd'});
+	//$(".NEWdate").datepicker({dateFormat: 'yy-mm-dd'});
 });
 </script>
 @endsection
