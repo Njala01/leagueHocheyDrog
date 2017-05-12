@@ -94,8 +94,11 @@ class PartieController extends Controller
 
     public function editALL() : View
     {
-    	$parties = $this->api->get('/raw/parties/'); 
-    	return view('parties.edit', compact('parties'));
+        $parties = Partie::all();
+        $equipes = Equipe::all(['id', 'name']);
+        $saisons = Saison::all(['id', 'name']);
+        $id = 0;
+    	return view('parties.edit', compact(['parties', 'id', 'equipes', 'saisons']));
     }
 
     public function edit($id) : View

@@ -231,13 +231,14 @@ $(document).ready(function() {
 
 		$.ajax({
 			type: "DELETE",
-			url: '/parties/edit/' + $(this).closest('tr').attr('id'),
+			url: '/api/parties/edit/' + $(this).closest('tr').attr('id'),
 			success: function(data) {
 				console.log(data);
 			}
 		});
 	});
-	$(".date").datepicker({dateFormat: 'yy-mm-dd'});
+	//datepicker qui rentre en conflit avec les add de tr et les remove de tr
+	//$(".date").datepicker({dateFormat: 'yy-mm-dd'});
 	//$(".NEWdate").datepicker({dateFormat: 'yy-mm-dd'});
 });
 </script>

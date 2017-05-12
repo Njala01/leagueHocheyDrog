@@ -35,3 +35,4 @@ Route::get('/ligues', ['as' => 'ligues.index', 'uses' => 'LigueController@index'
 Route::get('/ligues/edit', ['as' => 'ligues.edit', 'uses' => 'LigueController@edit']);
 
 Auth::routes();
+Route::get('/auth/manage', ['as' => 'auth.manage', 'uses' => 'Auth\ManageController@manage']);

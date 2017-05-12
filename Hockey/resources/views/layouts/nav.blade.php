@@ -83,7 +83,7 @@
             </a>
 
             <ul class="dropdown-menu">
-              <li><a href="#">Mon compte</a></li>
+              <li><a href="/auth/manage">Mon compte</a></li>
 
               @if(Auth::user()->hasTeam_AdminRole())
                 <li><a href="/editer">Gérer les articles</a></li>

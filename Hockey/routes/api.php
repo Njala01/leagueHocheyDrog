@@ -20,6 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 $api = app(Router::class);
 $api->version('v1', [], function (Router $api) {
+
+    $api->post('/auth/role/{id}', 'App\Http\Controllers\Auth\ManageController@role');
+
 	//ÉQUIPES
     $api->get('/raw/equipes', 'App\Http\Controllers\Api\V1\EquipeController@list');
     // Lister les parties et activer la modification dynamique en AJAX qui permet d'ajouter, modifier ou effacer
