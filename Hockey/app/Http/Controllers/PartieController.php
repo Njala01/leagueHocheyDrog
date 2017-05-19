@@ -23,6 +23,11 @@ class PartieController extends Controller
         return view('parties.index', compact('parties'));
     }
 
+    public function detail($id){
+        $laPartie = Partie::where('id', $id);
+        return view('parties.detail', compact('laPartie'));
+    }
+
     public function marquer($id){
         $partie = Partie::find($id);
         $local = Equipe::where("id", $partie->local_team)->first();

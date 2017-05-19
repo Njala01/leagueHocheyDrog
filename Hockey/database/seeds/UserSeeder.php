@@ -13,7 +13,9 @@ class UserSeeder extends Seeder
     {
         //
           $type = [
+        ['name' => 'user'],
         ['name' => 'admin'],
+        ['name' => 'team_admin'],
         ];
         foreach($type as $type){
             App\Role::create($type);
